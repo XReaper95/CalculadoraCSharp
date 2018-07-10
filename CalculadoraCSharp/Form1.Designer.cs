@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.displayPrincipal = new System.Windows.Forms.TextBox();
             this.multiplicar = new System.Windows.Forms.Button();
             this.dividir = new System.Windows.Forms.Button();
             this.sumar = new System.Windows.Forms.Button();
@@ -49,8 +50,7 @@
             this.boton0 = new System.Windows.Forms.Button();
             this.botonMasMenos = new System.Windows.Forms.Button();
             this.puntoDecimal = new System.Windows.Forms.Button();
-            this.displayOperacion = new System.Windows.Forms.TextBox();
-            this.displayPrincipal = new System.Windows.Forms.TextBox();
+            this.displaySecundario = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +82,7 @@
             this.tableLayoutPanel1.Controls.Add(this.boton0, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.botonMasMenos, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.puntoDecimal, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.displayOperacion, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.displaySecundario, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -96,6 +96,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(313, 424);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // displayPrincipal
+            // 
+            this.displayPrincipal.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.displayPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.displayPrincipal, 5);
+            this.displayPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayPrincipal.Location = new System.Drawing.Point(3, 24);
+            this.displayPrincipal.Name = "displayPrincipal";
+            this.displayPrincipal.ReadOnly = true;
+            this.displayPrincipal.Size = new System.Drawing.Size(307, 55);
+            this.displayPrincipal.TabIndex = 21;
+            this.displayPrincipal.Text = "0";
+            this.displayPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // multiplicar
             // 
@@ -162,6 +176,7 @@
             this.boton7.TabIndex = 1;
             this.boton7.Text = "7";
             this.boton7.UseVisualStyleBackColor = false;
+            this.boton7.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton8
             // 
@@ -173,6 +188,7 @@
             this.boton8.TabIndex = 0;
             this.boton8.Text = "8";
             this.boton8.UseVisualStyleBackColor = false;
+            this.boton8.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton9
             // 
@@ -184,6 +200,7 @@
             this.boton9.TabIndex = 2;
             this.boton9.Text = "9";
             this.boton9.UseVisualStyleBackColor = false;
+            this.boton9.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton4
             // 
@@ -195,6 +212,7 @@
             this.boton4.TabIndex = 3;
             this.boton4.Text = "4";
             this.boton4.UseVisualStyleBackColor = false;
+            this.boton4.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton5
             // 
@@ -206,6 +224,7 @@
             this.boton5.TabIndex = 4;
             this.boton5.Text = "5";
             this.boton5.UseVisualStyleBackColor = false;
+            this.boton5.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton6
             // 
@@ -217,6 +236,7 @@
             this.boton6.TabIndex = 5;
             this.boton6.Text = "6";
             this.boton6.UseVisualStyleBackColor = false;
+            this.boton6.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton1
             // 
@@ -228,6 +248,7 @@
             this.boton1.TabIndex = 6;
             this.boton1.Text = "1";
             this.boton1.UseVisualStyleBackColor = false;
+            this.boton1.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton2
             // 
@@ -239,6 +260,7 @@
             this.boton2.TabIndex = 7;
             this.boton2.Text = "2";
             this.boton2.UseVisualStyleBackColor = false;
+            this.boton2.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // boton3
             // 
@@ -250,6 +272,7 @@
             this.boton3.TabIndex = 0;
             this.boton3.Text = "3";
             this.boton3.UseVisualStyleBackColor = false;
+            this.boton3.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // botonAllClear
             // 
@@ -284,6 +307,7 @@
             this.boton0.TabIndex = 19;
             this.boton0.Text = "0";
             this.boton0.UseVisualStyleBackColor = false;
+            this.boton0.Click += new System.EventHandler(this.BotonNumerico);
             // 
             // botonMasMenos
             // 
@@ -307,32 +331,18 @@
             this.puntoDecimal.Text = ".";
             this.puntoDecimal.UseVisualStyleBackColor = false;
             // 
-            // displayOperacion
+            // displaySecundario
             // 
-            this.displayOperacion.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.displayOperacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.displayOperacion, 5);
-            this.displayOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayOperacion.Location = new System.Drawing.Point(3, 3);
-            this.displayOperacion.Name = "displayOperacion";
-            this.displayOperacion.ReadOnly = true;
-            this.displayOperacion.Size = new System.Drawing.Size(307, 22);
-            this.displayOperacion.TabIndex = 20;
-            this.displayOperacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // displayPrincipal
-            // 
-            this.displayPrincipal.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.displayPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.displayPrincipal, 5);
-            this.displayPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayPrincipal.Location = new System.Drawing.Point(3, 24);
-            this.displayPrincipal.Name = "displayPrincipal";
-            this.displayPrincipal.ReadOnly = true;
-            this.displayPrincipal.Size = new System.Drawing.Size(307, 55);
-            this.displayPrincipal.TabIndex = 21;
-            this.displayPrincipal.Text = "0";
-            this.displayPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.displaySecundario.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.displaySecundario.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.displaySecundario, 5);
+            this.displaySecundario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displaySecundario.Location = new System.Drawing.Point(3, 3);
+            this.displaySecundario.Name = "displaySecundario";
+            this.displaySecundario.ReadOnly = true;
+            this.displaySecundario.Size = new System.Drawing.Size(307, 22);
+            this.displaySecundario.TabIndex = 20;
+            this.displaySecundario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
@@ -375,7 +385,7 @@
         private System.Windows.Forms.Button boton0;
         private System.Windows.Forms.Button botonMasMenos;
         private System.Windows.Forms.TextBox displayPrincipal;
-        private System.Windows.Forms.TextBox displayOperacion;
+        private System.Windows.Forms.TextBox displaySecundario;
     }
 }
 
