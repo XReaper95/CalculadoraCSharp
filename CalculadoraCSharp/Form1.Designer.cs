@@ -46,11 +46,11 @@
             this.boton2 = new System.Windows.Forms.Button();
             this.boton3 = new System.Windows.Forms.Button();
             this.botonAllClear = new System.Windows.Forms.Button();
-            this.resultado = new System.Windows.Forms.Button();
             this.boton0 = new System.Windows.Forms.Button();
             this.botonMasMenos = new System.Windows.Forms.Button();
             this.puntoDecimal = new System.Windows.Forms.Button();
             this.displaySecundario = new System.Windows.Forms.TextBox();
+            this.ResultadoOperacion = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,11 +78,11 @@
             this.tableLayoutPanel1.Controls.Add(this.boton2, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.boton3, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.botonAllClear, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.resultado, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.boton0, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.botonMasMenos, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.puntoDecimal, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.displaySecundario, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ResultadoOperacion, 3, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -143,6 +143,7 @@
             this.sumar.TabIndex = 9;
             this.sumar.Text = "+";
             this.sumar.UseVisualStyleBackColor = false;
+            this.sumar.Click += new System.EventHandler(this.Sumar_Click);
             // 
             // restar
             // 
@@ -165,6 +166,7 @@
             this.botonClearEntry.TabIndex = 16;
             this.botonClearEntry.Text = "CE";
             this.botonClearEntry.UseVisualStyleBackColor = false;
+            this.botonClearEntry.Click += new System.EventHandler(this.BotonClearEntry_Click);
             // 
             // boton7
             // 
@@ -176,7 +178,7 @@
             this.boton7.TabIndex = 1;
             this.boton7.Text = "7";
             this.boton7.UseVisualStyleBackColor = false;
-            this.boton7.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton7.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton8
             // 
@@ -188,7 +190,7 @@
             this.boton8.TabIndex = 0;
             this.boton8.Text = "8";
             this.boton8.UseVisualStyleBackColor = false;
-            this.boton8.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton8.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton9
             // 
@@ -200,7 +202,7 @@
             this.boton9.TabIndex = 2;
             this.boton9.Text = "9";
             this.boton9.UseVisualStyleBackColor = false;
-            this.boton9.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton9.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton4
             // 
@@ -212,7 +214,7 @@
             this.boton4.TabIndex = 3;
             this.boton4.Text = "4";
             this.boton4.UseVisualStyleBackColor = false;
-            this.boton4.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton4.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton5
             // 
@@ -224,7 +226,7 @@
             this.boton5.TabIndex = 4;
             this.boton5.Text = "5";
             this.boton5.UseVisualStyleBackColor = false;
-            this.boton5.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton5.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton6
             // 
@@ -236,7 +238,7 @@
             this.boton6.TabIndex = 5;
             this.boton6.Text = "6";
             this.boton6.UseVisualStyleBackColor = false;
-            this.boton6.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton6.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton1
             // 
@@ -248,7 +250,7 @@
             this.boton1.TabIndex = 6;
             this.boton1.Text = "1";
             this.boton1.UseVisualStyleBackColor = false;
-            this.boton1.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton1.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton2
             // 
@@ -260,7 +262,7 @@
             this.boton2.TabIndex = 7;
             this.boton2.Text = "2";
             this.boton2.UseVisualStyleBackColor = false;
-            this.boton2.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton2.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // boton3
             // 
@@ -272,7 +274,7 @@
             this.boton3.TabIndex = 0;
             this.boton3.Text = "3";
             this.boton3.UseVisualStyleBackColor = false;
-            this.boton3.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton3.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // botonAllClear
             // 
@@ -285,18 +287,6 @@
             this.botonAllClear.Text = "AC";
             this.botonAllClear.UseVisualStyleBackColor = false;
             // 
-            // resultado
-            // 
-            this.resultado.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.tableLayoutPanel1.SetColumnSpan(this.resultado, 2);
-            this.resultado.Font = new System.Drawing.Font("MS Reference Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultado.Location = new System.Drawing.Point(189, 340);
-            this.resultado.Name = "resultado";
-            this.resultado.Size = new System.Drawing.Size(118, 78);
-            this.resultado.TabIndex = 17;
-            this.resultado.Text = "=";
-            this.resultado.UseVisualStyleBackColor = false;
-            // 
             // boton0
             // 
             this.boton0.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -307,7 +297,7 @@
             this.boton0.TabIndex = 19;
             this.boton0.Text = "0";
             this.boton0.UseVisualStyleBackColor = false;
-            this.boton0.Click += new System.EventHandler(this.BotonNumerico);
+            this.boton0.Click += new System.EventHandler(this.BotonNumerico_Click);
             // 
             // botonMasMenos
             // 
@@ -343,6 +333,19 @@
             this.displaySecundario.Size = new System.Drawing.Size(307, 22);
             this.displaySecundario.TabIndex = 20;
             this.displaySecundario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // ResultadoOperacion
+            // 
+            this.ResultadoOperacion.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.tableLayoutPanel1.SetColumnSpan(this.ResultadoOperacion, 2);
+            this.ResultadoOperacion.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultadoOperacion.Location = new System.Drawing.Point(189, 340);
+            this.ResultadoOperacion.Name = "ResultadoOperacion";
+            this.ResultadoOperacion.Size = new System.Drawing.Size(118, 76);
+            this.ResultadoOperacion.TabIndex = 22;
+            this.ResultadoOperacion.Text = "=";
+            this.ResultadoOperacion.UseVisualStyleBackColor = false;
+            this.ResultadoOperacion.Click += new System.EventHandler(this.ResultadoOperacion_Click);
             // 
             // Form1
             // 
@@ -386,6 +389,7 @@
         private System.Windows.Forms.Button botonMasMenos;
         private System.Windows.Forms.TextBox displayPrincipal;
         private System.Windows.Forms.TextBox displaySecundario;
+        private System.Windows.Forms.Button ResultadoOperacion;
     }
 }
 
