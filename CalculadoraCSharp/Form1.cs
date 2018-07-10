@@ -21,17 +21,18 @@ namespace CalculadoraCSharp
         #region Variables
 
         private int resultado = 0;
+        private object operacionSelecionada;
 
         #endregion
 
         #region Métodos
-        
-       /// <summary>
-       /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
-       /// </summary>
-       /// <param name="display">Display a ser usado</param>
-       /// <param name="texto">Texto a ser mostrado</param>
-       private void EscribeDisplay(TextBox display,string texto)
+
+        /// <summary>
+        /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
+        /// </summary>
+        /// <param name="display">Display a ser usado</param>
+        /// <param name="texto">Texto a ser mostrado</param>
+        private void EscribeDisplay(TextBox display,string texto)
         {
            //evita ceros a la izquierda
            if(display.Text == "0") display.Text = "";
@@ -75,17 +76,21 @@ namespace CalculadoraCSharp
             //limpia la entrada actual del display principal
             displayPrincipal.Text = "";
         }
-
-        #endregion
-
-        private void Sumar_Click(object sender, EventArgs e)
+        //TODO terminar
+        private void Operacion_Click(object sender, EventArgs e)
         {
-
+            if (sender is Button operacion) {
+                EscribeDisplay(displaySecundario, displayPrincipal.Text, operacion.Text);
+                operacionSelecionada = operacion.Tag;
+                if (operacionSelecionada.ToString() == "asdad") return;
+            }
         }
-
+        //TODO implementar
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
 
         }
+
+        #endregion
     }
 }

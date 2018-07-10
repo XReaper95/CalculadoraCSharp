@@ -119,6 +119,7 @@
             this.multiplicar.Name = "multiplicar";
             this.multiplicar.Size = new System.Drawing.Size(56, 76);
             this.multiplicar.TabIndex = 11;
+            this.multiplicar.Tag = "multiplicacion";
             this.multiplicar.Text = "×";
             this.multiplicar.UseVisualStyleBackColor = false;
             // 
@@ -130,6 +131,7 @@
             this.dividir.Name = "dividir";
             this.dividir.Size = new System.Drawing.Size(56, 76);
             this.dividir.TabIndex = 12;
+            this.dividir.Tag = "division";
             this.dividir.Text = "÷";
             this.dividir.UseVisualStyleBackColor = false;
             // 
@@ -141,9 +143,10 @@
             this.sumar.Name = "sumar";
             this.sumar.Size = new System.Drawing.Size(56, 76);
             this.sumar.TabIndex = 9;
+            this.sumar.Tag = "suma";
             this.sumar.Text = "+";
             this.sumar.UseVisualStyleBackColor = false;
-            this.sumar.Click += new System.EventHandler(this.Sumar_Click);
+            this.sumar.Click += new System.EventHandler(this.Operacion_Click);
             // 
             // restar
             // 
@@ -153,6 +156,7 @@
             this.restar.Name = "restar";
             this.restar.Size = new System.Drawing.Size(56, 76);
             this.restar.TabIndex = 10;
+            this.restar.Tag = "resta";
             this.restar.Text = "-";
             this.restar.UseVisualStyleBackColor = false;
             // 
@@ -384,7 +388,6 @@
         private System.Windows.Forms.Button puntoDecimal;
         private System.Windows.Forms.Button botonAllClear;
         private System.Windows.Forms.Button botonClearEntry;
-        private System.Windows.Forms.Button resultado;
         private System.Windows.Forms.Button boton0;
         private System.Windows.Forms.Button botonMasMenos;
         private System.Windows.Forms.TextBox displayPrincipal;
