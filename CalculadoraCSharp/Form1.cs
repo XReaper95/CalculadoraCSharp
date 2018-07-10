@@ -12,9 +12,15 @@ namespace CalculadoraCSharp
 {
     public partial class Form1 : Form
     {
+        //constructor default
         public Form1()
         {
             InitializeComponent();
         }
+
+
+        #region Métodos
+
+        #endregion
     }
 }
