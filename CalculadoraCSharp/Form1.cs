@@ -5,13 +5,26 @@ namespace CalculadoraCSharp
 {
     public partial class Form1 : Form 
     {
+        #region Constructor
+
         //constructor default
         public Form1()
         {
             InitializeComponent();
-        }
+            EstadoInicial();
+        } 
 
-        private static bool limpia = false;
+        #endregion
+
+        #region Variables
+
+        private static bool tieneOperacion = false;
+        private static int numeroEntrada = 0;
+        private static string operacionActual = "";
+        private static string operacionAnterior = "";
+        private static int resultado = 0; 
+
+        #endregion
 
         #region Eventos
 
@@ -22,12 +35,15 @@ namespace CalculadoraCSharp
             if (sender is Button digito)
             {
                 //limpia display si usario presiono tecla de operacion anteriormente
-                if (limpia)
+                if (tieneOperacion)
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
-                    limpia = false;
+                    tieneOperacion = false;
                 }
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
+
+                //evita ceros a la izquierda
+                if (displayPrincipal.Text == "0") Calculadora.BorraDisplay(displayPrincipal);
                 
                 Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
             }
@@ -37,28 +53,57 @@ namespace CalculadoraCSharp
         {
             Calculadora.BorraDisplay(displayPrincipal);
         }
-        
+
+        private void botonAllClear_Click(object sender, EventArgs e)
+        {
+            //reseta todo
+            EstadoInicial();
+        }
+
         private void Operacion_Click(object sender, EventArgs e)
         {
             if (sender is Button operacion)
             {
                 //prepara los datos segun la operacion solicitada
-                Calculadora.numeroEntrada = int.Parse(displayPrincipal.Text);
-                Calculadora.Calcula(Calculadora.operacionSelecionada, Calculadora.numeroEntrada);
+                numeroEntrada = int.Parse(displayPrincipal.Text);
+                resultado = Calculadora.CalculaResultado(operacionActual, numeroEntrada);
+                numeroEntrada = 0;
 
                 //selecciona operacion y escribe en display secundario
                 Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text, operacion.Text);
-                Calculadora.operacionSelecionada = operacion.Tag.ToString();
-                limpia = true;
+                operacionActual = operacion.Tag.ToString();
+                operacionAnterior = operacionActual;
+                operacionActual = "";
+                tieneOperacion = true;
                 
             }
         }
-        //TODO implementar boton igual
+     
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
-            
+            //muestra el resultado de la operacion actual en el display principal
+            Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
         }
-       
+
+        #endregion
+
+        #region Métodos Auxiliares
+
+        /// <summary>
+        /// Reseta el estado dela calculadora
+        /// </summary>
+        private void EstadoInicial()
+        {
+            Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.BorraDisplay(displaySecundario);
+            tieneOperacion = false;
+            numeroEntrada = 0;
+            operacionActual = "";
+            operacionAnterior = "";
+            resultado = 0;
+        } 
+
         #endregion
     }
 }

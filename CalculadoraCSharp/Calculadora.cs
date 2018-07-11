@@ -6,9 +6,7 @@ namespace CalculadoraCSharp
     {
         #region Variables
 
-        public static int resultado = 0;
-        public static int numeroEntrada = 0;
-        public static string operacionSelecionada = "";
+        
 
         #endregion
 
@@ -22,7 +20,6 @@ namespace CalculadoraCSharp
         internal static void EscribeDisplay(TextBox display, string texto)
         {
             //evita ceros a la izquierda
-            if (display.Text == "0" || resultado != 0) BorraDisplay(display);
             display.Text += texto;
         }
 
@@ -35,7 +32,6 @@ namespace CalculadoraCSharp
         internal static void EscribeDisplay(TextBox display, string texto, string texto1)
         {
             //evita ceros a la izquierda
-            if (display.Text == "0" || resultado != 0) BorraDisplay(display);
             display.Text += texto + " " + texto1 + " ";
         }
 
@@ -52,20 +48,24 @@ namespace CalculadoraCSharp
         /// Realiza la operacion seleccionada con el resultado actual
         /// </summary>
         /// <param name="operacionSelecionada">Ultima tecla de operacion seleccionada</param>
-        internal static void Calcula(string operacionSelecionada, int entradaNumerica)
+        internal static int CalculaResultado(string operacion, int entrada)
         {
-            switch (operacionSelecionada)
+            int resultado = 0;
+
+            switch (operacion)
             {
                 case "suma":
-                    resultado += numeroEntrada;
-                    break;
-                case "resta":
-                    resultado -= numeroEntrada;
-                    break;
-                case "multiplicacion":
-                    break;
-                case "division":
-                    break;
+                    resultado += entrada;
+                    return resultado;
+                //case "resta":
+                //  resultado -= entrada;
+                //return resultado;
+                //case "multiplicacion":
+                //    return resultado;
+                //case "division":
+                //    return resultado;
+                default:
+                    return resultado;
             }
         }
 
