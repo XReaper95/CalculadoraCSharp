@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CalculadoraCSharp
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form 
     {
         //constructor default
         public Form1()
@@ -18,68 +18,14 @@ namespace CalculadoraCSharp
             InitializeComponent();
         }
 
-        #region Variables
-
-        private int resultado = 0;
-        private string operacionSelecionada = "";
-        private bool limpia = false;
-        private int ultimoNumero = 0;
-
-        #endregion
-
-        #region Métodos
-
-        /// <summary>
-        /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
-        /// </summary>
-        /// <param name="display">Display a ser usado</param>
-        /// <param name="texto">Texto a ser mostrado</param>
-        private void EscribeDisplay(TextBox display,string texto)
-        {
-           //evita ceros a la izquierda
-           if(display.Text == "0") display.Text = "";
-           display.Text += texto;
-        }
-
-        /// <summary>
-        /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
-        /// </summary>
-        /// <param name="display">Display a ser usado</param>
-        /// <param name="texto">Texto a ser mostrado</param>
-        /// <param name="texto1">Texto adicional</param>
-        private void EscribeDisplay(TextBox display, string texto, string texto1)
-        {
-            //evita ceros a la izquierda
-            if (display.Text == "0") display.Text = "";
-            display.Text += texto + " " + texto1 + " ";
-        }
-
-        /// <summary>
-        /// Realiza la operacion seleccionada con el resultado actual
-        /// </summary>
-        /// <param name="operacionSelecionada">Ultima tecla de operacion seleccionada</param>
-        private void Calcula(string operacionSelecionada)
-        {
-            switch (operacionSelecionada)
-            {
-                case "suma":
-
-                    break;
-                case "resta":
-                    break;
-                case "multiplicacion":
-                    break;
-                case "division":
-                    break;
-            }
-        }
-
-        #endregion
+        private static string operacionSelecionada = "";
+        private static bool limpia = false;
 
         #region Eventos
 
         private void BotonNumerico_Click(object sender, EventArgs e)
         {
+            
             //nuevo padron para eventos
             if (sender is Button digito)
             {
@@ -96,7 +42,7 @@ namespace CalculadoraCSharp
                     return;
                 }
                 //escribe el número en el display principal
-                EscribeDisplay(displayPrincipal, digito.Text);
+                Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
             }
         }
         
@@ -105,25 +51,28 @@ namespace CalculadoraCSharp
             //limpia la entrada actual del display principal
             displayPrincipal.Text = "";
         }
-        //TODO terminar
+        
         private void Operacion_Click(object sender, EventArgs e)
         {
             if (sender is Button operacion)
             {
+                //prepara los datos para la operacion segun la solicitada
+                numeroEntrada = Calculadora.
+                Calculadora.Calcula(operacionSelecionada, numeroEntrada);
+
                 //selecciona operacion y escribe en display secundario
-                EscribeDisplay(displaySecundario, displayPrincipal.Text, operacion.Text);
+                Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text, operacion.Text);
                 operacionSelecionada = operacion.Tag.ToString();
                 limpia = true;
-                //prepara los datos para la operacion segun la solicitada
-                ultimoNumero =int.Parse(displayPrincipal.Text);
-                Calcula(operacionSelecionada);
+                
             }
         }
 
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
-            // EscribeDisplay(displayPrincipal, resultado.ToString());
-            //displaySecundario.Text = "";
+            Calcula(operacionSelecionada, int.Parse(displayPrincipal.Text));
+            EscribeDisplay(displayPrincipal, resultado.ToString());
+            displaySecundario.Text = "";
         }
        
         #endregion
