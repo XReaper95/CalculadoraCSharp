@@ -6,9 +6,10 @@ namespace CalculadoraCSharp
     {
         #region Variables
 
-        private static int resultado = 0;
-        private static int numeroEntrada = 0;
-        
+        public static int resultado = 0;
+        public static int numeroEntrada = 0;
+        public static string operacionSelecionada = "";
+
         #endregion
 
         #region Métodos
@@ -21,7 +22,7 @@ namespace CalculadoraCSharp
         internal static void EscribeDisplay(TextBox display, string texto)
         {
             //evita ceros a la izquierda
-            if (display.Text == "0" || resultado != 0) display.Text = "";
+            if (display.Text == "0" || resultado != 0) BorraDisplay(display);
             display.Text += texto;
         }
 
@@ -34,7 +35,7 @@ namespace CalculadoraCSharp
         internal static void EscribeDisplay(TextBox display, string texto, string texto1)
         {
             //evita ceros a la izquierda
-            if (display.Text == "0" || resultado != 0) display.Text = "";
+            if (display.Text == "0" || resultado != 0) BorraDisplay(display);
             display.Text += texto + " " + texto1 + " ";
         }
 
@@ -68,8 +69,20 @@ namespace CalculadoraCSharp
             }
         }
 
-        
+        /// <summary>
+        /// Muestra error cuando el display sobrepasar los 11 digiros
+        /// </summary>
+        /// <param name="display">Discpley a chekear</param>
+        internal static void CheckeaMaximoDeDigitos(TextBox display)
+        {
+            if (display.Text.Length > 10)
+            {
+                MessageBox.Show("Máximo de 11 dígitos alcanzados", "Error");
+                return;
+            }
+        }
 
-        #endregion
-    }
+
+    #endregion
+}
 }
