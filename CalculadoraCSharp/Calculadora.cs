@@ -6,7 +6,7 @@ namespace CalculadoraCSharp
     {
         #region Variables
 
-        
+        public static int acumulado = 0;
 
         #endregion
 
@@ -24,18 +24,6 @@ namespace CalculadoraCSharp
         }
 
         /// <summary>
-        /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
-        /// </summary>
-        /// <param name="display">Display a ser usado</param>
-        /// <param name="texto">Texto a ser mostrado</param>
-        /// <param name="texto1">Texto adicional</param>
-        internal static void EscribeDisplay(TextBox display, string texto, string texto1)
-        {
-            //evita ceros a la izquierda
-            display.Text += texto + " " + texto1 + " ";
-        }
-
-        /// <summary>
         /// Borra la salida actual del display
         /// </summary>
         /// <param name="display">Display a ser borrado</param>
@@ -45,28 +33,32 @@ namespace CalculadoraCSharp
         }
 
         /// <summary>
-        /// Realiza la operacion seleccionada con el resultado actual
+        /// Realiza la suma del numero en el display con el resultado total
         /// </summary>
-        /// <param name="operacionSelecionada">Ultima tecla de operacion seleccionada</param>
-        internal static int CalculaResultado(string operacion, int entrada)
+        /// <param name="acumulado">Resultado total</param>
+        /// <param name="displayConOperando">Display con elemento a sumar</param>
+        /// <returns></returns>
+        internal static void Suma(int acumulado, TextBox displayConOperando)
         {
-            int resultado = 0;
+            acumulado =  acumulado + int.Parse(displayConOperando.Text);
+        }
 
-            switch (operacion)
-            {
-                case "suma":
-                    resultado += entrada;
-                    return resultado;
-                //case "resta":
-                //  resultado -= entrada;
-                //return resultado;
-                //case "multiplicacion":
-                //    return resultado;
-                //case "division":
-                //    return resultado;
-                default:
-                    return resultado;
-            }
+        //TODO implementar
+        internal static int Resta(int operando1, int operando2)
+        {
+            return 0;
+        }
+
+        //TODO implementar
+        internal static int Multiplica(int operando1, int operando2)
+        {
+            return 0;
+        }
+
+        //TODO implementar
+        internal static int? Divide(int operando1, int operando2)
+        {
+            return null;
         }
 
         /// <summary>

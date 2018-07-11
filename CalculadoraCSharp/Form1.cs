@@ -19,10 +19,7 @@ namespace CalculadoraCSharp
         #region Variables
 
         private static bool tieneOperacion = false;
-        private static int numeroEntrada = 0;
         private static string operacionActual = "";
-        private static string operacionAnterior = "";
-        private static int resultado = 0; 
 
         #endregion
 
@@ -30,15 +27,13 @@ namespace CalculadoraCSharp
 
         private void BotonNumerico_Click(object sender, EventArgs e)
         {
-            
             //nuevo padron para eventos
             if (sender is Button digito)
             {
                 //limpia display si usario presiono tecla de operacion anteriormente
-                if (tieneOperacion)
+                if (operacionActual != "")
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
-                    tieneOperacion = false;
                 }
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
 
@@ -64,26 +59,31 @@ namespace CalculadoraCSharp
         {
             if (sender is Button operacion)
             {
-                //prepara los datos segun la operacion solicitada
-                numeroEntrada = int.Parse(displayPrincipal.Text);
-                resultado = Calculadora.CalculaResultado(operacionActual, numeroEntrada);
-                numeroEntrada = 0;
-
-                //selecciona operacion y escribe en display secundario
-                Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text, operacion.Text);
                 operacionActual = operacion.Tag.ToString();
-                operacionAnterior = operacionActual;
-                operacionActual = "";
-                tieneOperacion = true;
-                
+                Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
             }
         }
      
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
-            Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
+            switch (operacionActual)
+            {
+                case "suma":
+                    if (operacionActual != "") return;
+                    operacionActual = operacion.Tag.ToString();
+                    Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " +");
+                    break;
+
+                case "resta":
+
+                case "multiplica":
+
+                case "divide":
+
+                default:
+                    break;
+            }
         }
 
         #endregion
@@ -98,10 +98,8 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
             tieneOperacion = false;
-            numeroEntrada = 0;
             operacionActual = "";
-            operacionAnterior = "";
-            resultado = 0;
+            Calculadora.acumulado = 0;
         } 
 
         #endregion
