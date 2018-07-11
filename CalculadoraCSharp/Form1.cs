@@ -21,7 +21,9 @@ namespace CalculadoraCSharp
         #region Variables
 
         private int resultado = 0;
-        private object operacionSelecionada;
+        private string operacionSelecionada = "";
+        private bool limpia = false;
+        private int ultimoNumero = 0;
 
         #endregion
 
@@ -52,14 +54,41 @@ namespace CalculadoraCSharp
             display.Text += texto + " " + texto1 + " ";
         }
 
+        /// <summary>
+        /// Realiza la operacion seleccionada con el resultado actual
+        /// </summary>
+        /// <param name="operacionSelecionada">Ultima tecla de operacion seleccionada</param>
+        private void Calcula(string operacionSelecionada)
+        {
+            switch (operacionSelecionada)
+            {
+                case "suma":
+
+                    break;
+                case "resta":
+                    break;
+                case "multiplicacion":
+                    break;
+                case "division":
+                    break;
+            }
+        }
+
         #endregion
 
         #region Eventos
+
         private void BotonNumerico_Click(object sender, EventArgs e)
         {
             //nuevo padron para eventos
             if (sender is Button digito)
             {
+                //limpia display si usario presiono tecla de operacion anteriormente
+                if (limpia)
+                {
+                    displayPrincipal.Text = "";
+                    limpia = false;
+                }
                 //máximo de 11 digitos,muestra error
                 if(displayPrincipal.Text.Length > 10)
                 {
@@ -79,18 +108,24 @@ namespace CalculadoraCSharp
         //TODO terminar
         private void Operacion_Click(object sender, EventArgs e)
         {
-            if (sender is Button operacion) {
+            if (sender is Button operacion)
+            {
+                //selecciona operacion y escribe en display secundario
                 EscribeDisplay(displaySecundario, displayPrincipal.Text, operacion.Text);
-                operacionSelecionada = operacion.Tag;
-                if (operacionSelecionada.ToString() == "asdad") return;
+                operacionSelecionada = operacion.Tag.ToString();
+                limpia = true;
+                //prepara los datos para la operacion segun la solicitada
+                ultimoNumero =int.Parse(displayPrincipal.Text);
+                Calcula(operacionSelecionada);
             }
         }
-        //TODO implementar
+
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
-
+            // EscribeDisplay(displayPrincipal, resultado.ToString());
+            //displaySecundario.Text = "";
         }
-
+       
         #endregion
     }
 }
