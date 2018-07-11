@@ -32,9 +32,9 @@ namespace CalculadoraCSharp
         /// <param name="resultado">Resultado total</param>
         /// <param name="displayConOperando">Display con elemento a sumar</param>
         /// <returns></returns>
-        internal static int Suma(int acumulado, TextBox displayConOperando)
+        internal static int Suma(int numero1, int numero2)
         {
-            return acumulado + int.Parse(displayConOperando.Text);
+            return numero1 + numero2;
         }
 
         //TODO implementar

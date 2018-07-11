@@ -20,7 +20,7 @@ namespace CalculadoraCSharp
 
         private static bool insertaNumero = false;
         private static string operacionActual = "";
-        private static int resultado = 0;
+        private static int acumulado = 0;
         private static int operando = 0;
 
         #endregion
@@ -72,11 +72,9 @@ namespace CalculadoraCSharp
             switch (operacionActual)
             {
                 case "suma":
-                    resultado = Calculadora.Suma(operando, displayPrincipal);
-                    Calculadora.BorraDisplay(displayPrincipal);
-                    Calculadora.BorraDisplay(displaySecundario);
-                    Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
-                    insertaNumero = true;
+                    if (operando == 0) operando = int.Parse(displayPrincipal.Text);
+                    acumulado = Calculadora.Suma(acumulado, operando);
+                    MuestraResultado();
                     break;
 
                 case "resta":
@@ -103,7 +101,7 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displaySecundario);
             insertaNumero = false;
             operacionActual = "";
-            resultado = 0;
+            acumulado = 0;
         }
 
         /// <summary>
@@ -112,10 +110,23 @@ namespace CalculadoraCSharp
         /// <param name="operacion">Operacion seleccionada</param>
         private void OperacionParcial(Button operacion)
         {
+            if (insertaNumero) ResultadoOperacion_Click(operacion);
+            operando = 0;
             operacionActual = operacion.Tag.ToString();
             insertaNumero = true;
             Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
-            operando = int.Parse(displayPrincipal.Text);
+            acumulado = int.Parse(displayPrincipal.Text);
+        }
+
+        /// <summary>
+        /// Muestra el resultado de la operacion en el display principal
+        /// </summary>
+        private void MuestraResultado()
+        {
+            Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.BorraDisplay(displaySecundario);
+            Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString());
+            insertaNumero = true;
         }
 
         #endregion
