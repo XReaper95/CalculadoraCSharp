@@ -85,6 +85,7 @@
             this.tableLayoutPanel1.Controls.Add(this.ResultadoOperacion, 3, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.087615F));
@@ -93,8 +94,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.91239F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.91239F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.91239F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(313, 424);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(417, 522);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // displayPrincipal
@@ -103,10 +104,11 @@
             this.displayPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tableLayoutPanel1.SetColumnSpan(this.displayPrincipal, 5);
             this.displayPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayPrincipal.Location = new System.Drawing.Point(3, 24);
+            this.displayPrincipal.Location = new System.Drawing.Point(4, 30);
+            this.displayPrincipal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.displayPrincipal.Name = "displayPrincipal";
             this.displayPrincipal.ReadOnly = true;
-            this.displayPrincipal.Size = new System.Drawing.Size(307, 55);
+            this.displayPrincipal.Size = new System.Drawing.Size(409, 68);
             this.displayPrincipal.TabIndex = 21;
             this.displayPrincipal.Text = "0";
             this.displayPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -114,10 +116,11 @@
             // multiplicar
             // 
             this.multiplicar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.multiplicar.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.multiplicar.Location = new System.Drawing.Point(189, 172);
+            this.multiplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.multiplicar.Location = new System.Drawing.Point(253, 212);
+            this.multiplicar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.multiplicar.Name = "multiplicar";
-            this.multiplicar.Size = new System.Drawing.Size(56, 76);
+            this.multiplicar.Size = new System.Drawing.Size(75, 94);
             this.multiplicar.TabIndex = 11;
             this.multiplicar.Tag = "multiplicacion";
             this.multiplicar.Text = "×";
@@ -126,10 +129,11 @@
             // dividir
             // 
             this.dividir.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.dividir.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dividir.Location = new System.Drawing.Point(251, 172);
+            this.dividir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dividir.Location = new System.Drawing.Point(336, 212);
+            this.dividir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dividir.Name = "dividir";
-            this.dividir.Size = new System.Drawing.Size(56, 76);
+            this.dividir.Size = new System.Drawing.Size(75, 94);
             this.dividir.TabIndex = 12;
             this.dividir.Tag = "division";
             this.dividir.Text = "÷";
@@ -138,10 +142,11 @@
             // sumar
             // 
             this.sumar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.sumar.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sumar.Location = new System.Drawing.Point(189, 256);
+            this.sumar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sumar.Location = new System.Drawing.Point(253, 315);
+            this.sumar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sumar.Name = "sumar";
-            this.sumar.Size = new System.Drawing.Size(56, 76);
+            this.sumar.Size = new System.Drawing.Size(75, 94);
             this.sumar.TabIndex = 9;
             this.sumar.Tag = "suma";
             this.sumar.Text = "+";
@@ -151,10 +156,11 @@
             // restar
             // 
             this.restar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.restar.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.restar.Location = new System.Drawing.Point(251, 256);
+            this.restar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.restar.Location = new System.Drawing.Point(336, 315);
+            this.restar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.restar.Name = "restar";
-            this.restar.Size = new System.Drawing.Size(56, 76);
+            this.restar.Size = new System.Drawing.Size(75, 94);
             this.restar.TabIndex = 10;
             this.restar.Tag = "resta";
             this.restar.Text = "-";
@@ -163,10 +169,11 @@
             // botonClearEntry
             // 
             this.botonClearEntry.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.botonClearEntry.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonClearEntry.Location = new System.Drawing.Point(251, 88);
+            this.botonClearEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonClearEntry.Location = new System.Drawing.Point(336, 109);
+            this.botonClearEntry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonClearEntry.Name = "botonClearEntry";
-            this.botonClearEntry.Size = new System.Drawing.Size(56, 76);
+            this.botonClearEntry.Size = new System.Drawing.Size(75, 94);
             this.botonClearEntry.TabIndex = 16;
             this.botonClearEntry.Text = "CE";
             this.botonClearEntry.UseVisualStyleBackColor = false;
@@ -175,10 +182,11 @@
             // boton7
             // 
             this.boton7.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton7.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton7.Location = new System.Drawing.Point(3, 88);
+            this.boton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton7.Location = new System.Drawing.Point(4, 109);
+            this.boton7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton7.Name = "boton7";
-            this.boton7.Size = new System.Drawing.Size(56, 76);
+            this.boton7.Size = new System.Drawing.Size(75, 94);
             this.boton7.TabIndex = 1;
             this.boton7.Text = "7";
             this.boton7.UseVisualStyleBackColor = false;
@@ -187,10 +195,11 @@
             // boton8
             // 
             this.boton8.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton8.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton8.Location = new System.Drawing.Point(65, 88);
+            this.boton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton8.Location = new System.Drawing.Point(87, 109);
+            this.boton8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton8.Name = "boton8";
-            this.boton8.Size = new System.Drawing.Size(56, 76);
+            this.boton8.Size = new System.Drawing.Size(75, 94);
             this.boton8.TabIndex = 0;
             this.boton8.Text = "8";
             this.boton8.UseVisualStyleBackColor = false;
@@ -199,10 +208,11 @@
             // boton9
             // 
             this.boton9.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton9.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton9.Location = new System.Drawing.Point(127, 88);
+            this.boton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton9.Location = new System.Drawing.Point(170, 109);
+            this.boton9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton9.Name = "boton9";
-            this.boton9.Size = new System.Drawing.Size(56, 76);
+            this.boton9.Size = new System.Drawing.Size(75, 94);
             this.boton9.TabIndex = 2;
             this.boton9.Text = "9";
             this.boton9.UseVisualStyleBackColor = false;
@@ -211,10 +221,11 @@
             // boton4
             // 
             this.boton4.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton4.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton4.Location = new System.Drawing.Point(3, 172);
+            this.boton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton4.Location = new System.Drawing.Point(4, 212);
+            this.boton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton4.Name = "boton4";
-            this.boton4.Size = new System.Drawing.Size(56, 76);
+            this.boton4.Size = new System.Drawing.Size(75, 94);
             this.boton4.TabIndex = 3;
             this.boton4.Text = "4";
             this.boton4.UseVisualStyleBackColor = false;
@@ -223,10 +234,11 @@
             // boton5
             // 
             this.boton5.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton5.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton5.Location = new System.Drawing.Point(65, 172);
+            this.boton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton5.Location = new System.Drawing.Point(87, 212);
+            this.boton5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton5.Name = "boton5";
-            this.boton5.Size = new System.Drawing.Size(56, 76);
+            this.boton5.Size = new System.Drawing.Size(75, 94);
             this.boton5.TabIndex = 4;
             this.boton5.Text = "5";
             this.boton5.UseVisualStyleBackColor = false;
@@ -235,10 +247,11 @@
             // boton6
             // 
             this.boton6.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton6.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton6.Location = new System.Drawing.Point(127, 172);
+            this.boton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton6.Location = new System.Drawing.Point(170, 212);
+            this.boton6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton6.Name = "boton6";
-            this.boton6.Size = new System.Drawing.Size(56, 76);
+            this.boton6.Size = new System.Drawing.Size(75, 94);
             this.boton6.TabIndex = 5;
             this.boton6.Text = "6";
             this.boton6.UseVisualStyleBackColor = false;
@@ -247,10 +260,11 @@
             // boton1
             // 
             this.boton1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton1.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton1.Location = new System.Drawing.Point(3, 256);
+            this.boton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton1.Location = new System.Drawing.Point(4, 315);
+            this.boton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton1.Name = "boton1";
-            this.boton1.Size = new System.Drawing.Size(56, 76);
+            this.boton1.Size = new System.Drawing.Size(75, 94);
             this.boton1.TabIndex = 6;
             this.boton1.Text = "1";
             this.boton1.UseVisualStyleBackColor = false;
@@ -259,10 +273,11 @@
             // boton2
             // 
             this.boton2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton2.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton2.Location = new System.Drawing.Point(65, 256);
+            this.boton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton2.Location = new System.Drawing.Point(87, 315);
+            this.boton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton2.Name = "boton2";
-            this.boton2.Size = new System.Drawing.Size(56, 76);
+            this.boton2.Size = new System.Drawing.Size(75, 94);
             this.boton2.TabIndex = 7;
             this.boton2.Text = "2";
             this.boton2.UseVisualStyleBackColor = false;
@@ -271,10 +286,11 @@
             // boton3
             // 
             this.boton3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton3.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton3.Location = new System.Drawing.Point(127, 256);
+            this.boton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton3.Location = new System.Drawing.Point(170, 315);
+            this.boton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton3.Name = "boton3";
-            this.boton3.Size = new System.Drawing.Size(56, 76);
+            this.boton3.Size = new System.Drawing.Size(75, 94);
             this.boton3.TabIndex = 0;
             this.boton3.Text = "3";
             this.boton3.UseVisualStyleBackColor = false;
@@ -283,10 +299,11 @@
             // botonAllClear
             // 
             this.botonAllClear.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.botonAllClear.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonAllClear.Location = new System.Drawing.Point(189, 88);
+            this.botonAllClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonAllClear.Location = new System.Drawing.Point(253, 109);
+            this.botonAllClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonAllClear.Name = "botonAllClear";
-            this.botonAllClear.Size = new System.Drawing.Size(56, 76);
+            this.botonAllClear.Size = new System.Drawing.Size(75, 94);
             this.botonAllClear.TabIndex = 15;
             this.botonAllClear.Text = "AC";
             this.botonAllClear.UseVisualStyleBackColor = false;
@@ -295,10 +312,11 @@
             // boton0
             // 
             this.boton0.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.boton0.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton0.Location = new System.Drawing.Point(65, 340);
+            this.boton0.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton0.Location = new System.Drawing.Point(87, 418);
+            this.boton0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boton0.Name = "boton0";
-            this.boton0.Size = new System.Drawing.Size(56, 78);
+            this.boton0.Size = new System.Drawing.Size(75, 96);
             this.boton0.TabIndex = 19;
             this.boton0.Text = "0";
             this.boton0.UseVisualStyleBackColor = false;
@@ -307,10 +325,11 @@
             // botonMasMenos
             // 
             this.botonMasMenos.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.botonMasMenos.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonMasMenos.Location = new System.Drawing.Point(3, 340);
+            this.botonMasMenos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonMasMenos.Location = new System.Drawing.Point(4, 418);
+            this.botonMasMenos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonMasMenos.Name = "botonMasMenos";
-            this.botonMasMenos.Size = new System.Drawing.Size(56, 78);
+            this.botonMasMenos.Size = new System.Drawing.Size(75, 96);
             this.botonMasMenos.TabIndex = 18;
             this.botonMasMenos.Text = "±";
             this.botonMasMenos.UseVisualStyleBackColor = false;
@@ -318,10 +337,11 @@
             // puntoDecimal
             // 
             this.puntoDecimal.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.puntoDecimal.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.puntoDecimal.Location = new System.Drawing.Point(127, 340);
+            this.puntoDecimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.puntoDecimal.Location = new System.Drawing.Point(170, 418);
+            this.puntoDecimal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.puntoDecimal.Name = "puntoDecimal";
-            this.puntoDecimal.Size = new System.Drawing.Size(56, 78);
+            this.puntoDecimal.Size = new System.Drawing.Size(75, 96);
             this.puntoDecimal.TabIndex = 13;
             this.puntoDecimal.Text = ".";
             this.puntoDecimal.UseVisualStyleBackColor = false;
@@ -332,10 +352,11 @@
             this.displaySecundario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tableLayoutPanel1.SetColumnSpan(this.displaySecundario, 5);
             this.displaySecundario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displaySecundario.Location = new System.Drawing.Point(3, 3);
+            this.displaySecundario.Location = new System.Drawing.Point(4, 4);
+            this.displaySecundario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.displaySecundario.Name = "displaySecundario";
             this.displaySecundario.ReadOnly = true;
-            this.displaySecundario.Size = new System.Drawing.Size(307, 22);
+            this.displaySecundario.Size = new System.Drawing.Size(409, 27);
             this.displaySecundario.TabIndex = 20;
             this.displaySecundario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -343,10 +364,11 @@
             // 
             this.ResultadoOperacion.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.tableLayoutPanel1.SetColumnSpan(this.ResultadoOperacion, 2);
-            this.ResultadoOperacion.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResultadoOperacion.Location = new System.Drawing.Point(189, 340);
+            this.ResultadoOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultadoOperacion.Location = new System.Drawing.Point(253, 418);
+            this.ResultadoOperacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ResultadoOperacion.Name = "ResultadoOperacion";
-            this.ResultadoOperacion.Size = new System.Drawing.Size(118, 76);
+            this.ResultadoOperacion.Size = new System.Drawing.Size(157, 94);
             this.ResultadoOperacion.TabIndex = 22;
             this.ResultadoOperacion.Text = "=";
             this.ResultadoOperacion.UseVisualStyleBackColor = false;
@@ -354,13 +376,14 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(313, 424);
+            this.ClientSize = new System.Drawing.Size(417, 522);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "MiCalculadora";

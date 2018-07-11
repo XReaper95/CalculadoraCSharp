@@ -109,8 +109,7 @@ namespace CalculadoraCSharp
         /// </summary>
         /// <param name="operacion">Operacion seleccionada</param>
         private void OperacionParcial(Button operacion)
-        {
-            if (insertaNumero) ResultadoOperacion_Click(operacion);
+        { 
             operando = 0;
             operacionActual = operacion.Tag.ToString();
             insertaNumero = true;
