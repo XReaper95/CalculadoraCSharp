@@ -18,9 +18,10 @@ namespace CalculadoraCSharp
 
         #region Variables
 
-        private static bool tieneOperacion = false;
+        private static bool insertaNumero = false;
         private static string operacionActual = "";
         private static int resultado = 0;
+        private static int operando = 0;
 
         #endregion
 
@@ -32,9 +33,10 @@ namespace CalculadoraCSharp
             if (sender is Button digito)
             {
                 //limpia display si usario presiono tecla de operacion anteriormente
-                if (operacionActual != "")
+                if (insertaNumero)
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
+                    insertaNumero = false;
                 }
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
 
@@ -70,7 +72,11 @@ namespace CalculadoraCSharp
             switch (operacionActual)
             {
                 case "suma":
-                    resultado = Calculadora.Suma(resultado, displayPrincipal);
+                    resultado = Calculadora.Suma(operando, displayPrincipal);
+                    Calculadora.BorraDisplay(displayPrincipal);
+                    Calculadora.BorraDisplay(displaySecundario);
+                    Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
+                    insertaNumero = true;
                     break;
 
                 case "resta":
@@ -95,7 +101,7 @@ namespace CalculadoraCSharp
         {
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
-            tieneOperacion = false;
+            insertaNumero = false;
             operacionActual = "";
             resultado = 0;
         }
@@ -107,8 +113,9 @@ namespace CalculadoraCSharp
         private void OperacionParcial(Button operacion)
         {
             operacionActual = operacion.Tag.ToString();
+            insertaNumero = true;
             Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
-            resultado = int.Parse(displayPrincipal.Text);
+            operando = int.Parse(displayPrincipal.Text);
         }
 
         #endregion

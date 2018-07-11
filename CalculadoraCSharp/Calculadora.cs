@@ -34,7 +34,7 @@ namespace CalculadoraCSharp
         /// <returns></returns>
         internal static int Suma(int acumulado, TextBox displayConOperando)
         {
-            return =  acumulado + int.Parse(displayConOperando.Text);
+            return acumulado + int.Parse(displayConOperando.Text);
         }
 
         //TODO implementar
