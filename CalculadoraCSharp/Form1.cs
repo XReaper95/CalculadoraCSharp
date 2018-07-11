@@ -20,6 +20,7 @@ namespace CalculadoraCSharp
 
         private static bool tieneOperacion = false;
         private static string operacionActual = "";
+        private static int resultado = 0;
 
         #endregion
 
@@ -59,20 +60,17 @@ namespace CalculadoraCSharp
         {
             if (sender is Button operacion)
             {
-                operacionActual = operacion.Tag.ToString();
-                Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
+                OperacionParcial(operacion);
             }
         }
-     
+
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
             switch (operacionActual)
             {
                 case "suma":
-                    if (operacionActual != "") return;
-                    operacionActual = operacion.Tag.ToString();
-                    Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " +");
+                    resultado = Calculadora.Suma(resultado, displayPrincipal);
                     break;
 
                 case "resta":
@@ -99,8 +97,19 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displaySecundario);
             tieneOperacion = false;
             operacionActual = "";
-            Calculadora.acumulado = 0;
-        } 
+            resultado = 0;
+        }
+
+        /// <summary>
+        /// Escribe la operacion parcial en le display secundario y determina el primer operando
+        /// </summary>
+        /// <param name="operacion">Operacion seleccionada</param>
+        private void OperacionParcial(Button operacion)
+        {
+            operacionActual = operacion.Tag.ToString();
+            Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
+            resultado = int.Parse(displayPrincipal.Text);
+        }
 
         #endregion
     }

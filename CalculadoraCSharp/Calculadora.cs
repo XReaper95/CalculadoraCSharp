@@ -4,13 +4,7 @@ namespace CalculadoraCSharp
 {
     public static class  Calculadora
     {
-        #region Variables
-
-        public static int acumulado = 0;
-
-        #endregion
-
-        #region Métodos
+       #region Métodos
 
         /// <summary>
         /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
@@ -35,12 +29,12 @@ namespace CalculadoraCSharp
         /// <summary>
         /// Realiza la suma del numero en el display con el resultado total
         /// </summary>
-        /// <param name="acumulado">Resultado total</param>
+        /// <param name="resultado">Resultado total</param>
         /// <param name="displayConOperando">Display con elemento a sumar</param>
         /// <returns></returns>
-        internal static void Suma(int acumulado, TextBox displayConOperando)
+        internal static int Suma(int acumulado, TextBox displayConOperando)
         {
-            acumulado =  acumulado + int.Parse(displayConOperando.Text);
+            return =  acumulado + int.Parse(displayConOperando.Text);
         }
 
         //TODO implementar
