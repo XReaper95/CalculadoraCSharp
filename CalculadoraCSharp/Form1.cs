@@ -19,16 +19,20 @@ namespace CalculadoraCSharp
         #region Variables
 
         //proxima digitacion limpia el display principal
-        private static bool esperandoOperando = false;
+        private bool esperandoOperando = false;
         //boton igual repite la ultima operacion con el ultimo operando
-        private static bool repiteUltimaOperacion = false;
-        private static string operacionActual = "";
-        private static int acumulado = 0;
-        private static int operando1 = 0;
-        private static int operando2 = 0;
+        private bool repiteUltimaOperacion = false;
+        //fue realizada división por cero
+        private bool divisionPorCero = false;
+        //última operación selecionada
+        private string operacionActual = "";
+        //números
+        private int? acumulado = 0;
+        private int? operando1 = 0;
+        private int? operando2 = 0;
         //operando de la ultima operacion
-        private static int ultimoOperando = 0;
-
+        private int? ultimoOperando = 0;
+        
         #endregion
 
         #region Eventos
@@ -120,6 +124,7 @@ namespace CalculadoraCSharp
                     acumulado = Calculadora.Multiplica(operando1, operando2);
                     break;
                 case "divide":
+                    acumulado = Calculadora.Divide(operando1, operando2);
                     break;
                 default:
                     break;
@@ -148,8 +153,14 @@ namespace CalculadoraCSharp
         /// <summary>
             /// Muestra el resultado de la operacion en el display principal
             /// </summary>
-        private void MuestraResultado(int acumulado)
+        private void MuestraResultado(int? acumulado)
         {
+            if(acumulado == null)
+            {
+                Calculadora.EscribeDisplay(displayPrincipal, "Imposible dividir por cero");
+                divisionPorCero = true;
+                return;
+            }
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString());
         } //ok

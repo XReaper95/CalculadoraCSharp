@@ -45,7 +45,7 @@ namespace CalculadoraCSharp
         /// <param name="numero1"></param>
         /// <param name="numero2"></param>
         /// <returns></returns>
-        internal static int Suma(int numero1, int numero2)
+        internal static int? Suma(int? numero1, int? numero2)
         {
             return numero1 + numero2;
         } // ok
@@ -56,7 +56,7 @@ namespace CalculadoraCSharp
         /// <param name="numero1"></param>
         /// <param name="numero2"></param>
         /// <returns></returns>
-        internal static int Resta(int numero1, int numero2)
+        internal static int? Resta(int? numero1, int? numero2)
         {
             return numero1 - numero2;
         }
@@ -67,17 +67,18 @@ namespace CalculadoraCSharp
         /// <param name="numero1"></param>
         /// <param name="numero2"></param>
         /// <returns></returns>
-        internal static int Multiplica(int numero1, int numero2)
+        internal static int? Multiplica(int? numero1, int? numero2)
         {
             return numero1 * numero2;
         }
 
-        internal static int? Divide(int numero1, int numero2)
+        internal static int? Divide(int? numero1, int? numero2)
         {
-            return null;
-        } //TODO implementar
+            if (numero2 == 0) return null;
+            return numero1 / numero2;
+        } 
 
-        internal static int CambiaSigno(int numero)
+        internal static int? CambiaSigno(int? numero)
         {
             return 0;
         } //TODO implementar
