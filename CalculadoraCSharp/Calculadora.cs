@@ -11,7 +11,6 @@ namespace CalculadoraCSharp
 
         #endregion
 
-
         #region Métodos
 
         /// <summary>
@@ -114,13 +113,8 @@ namespace CalculadoraCSharp
         private static void CambiaFuente(TextBox display, int tamano)
         {
             display.Font = new System.Drawing.Font(display.Font.FontFamily,tamano);
-            display.TextAlign = HorizontalAlignment.Center;
             display.Anchor = AnchorStyles.Left;
-            if(tamano == FUENTE_NUMEROS)
-            {
-                display.TextAlign = HorizontalAlignment.Right;
-                display.Anchor = AnchorStyles.Right;
-            }
+            if(tamano == FUENTE_NUMEROS) display.Anchor = AnchorStyles.Right;
         } 
 
         #endregion

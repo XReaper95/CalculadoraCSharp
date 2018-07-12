@@ -43,6 +43,7 @@ namespace CalculadoraCSharp
             //nuevo padron para eventos
             if (sender is Button digito)
             {
+                if(CheckeaError()) return;
                 //limpia display si usario presiono tecla de operacion anteriormente
                 if (esperandoOperando)
                 {
@@ -60,6 +61,7 @@ namespace CalculadoraCSharp
         
         private void BotonClearEntry_Click(object sender, EventArgs e)
         {
+            if(CheckeaError()) return;
             acumulado = 0;
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
@@ -90,9 +92,10 @@ namespace CalculadoraCSharp
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
-            if (estadoError) EstadoInicial();
+            if(CheckeaError()) return;
+            Calculadora.BorraDisplay(displaySecundario);
             if (operando1 == 0)
-            {
+            {    
                 operando1 = acumulado;
                 operando2 = ultimoOperando;
                 repiteUltimaOperacion = true;
@@ -140,10 +143,6 @@ namespace CalculadoraCSharp
         /// </summary>
         private void EstadoInicial()
         {
-            HabilitaComandos();
-            Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.BorraDisplay(displaySecundario);
-            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
             esperandoOperando = false;
             repiteUltimaOperacion = false;
             estadoError = false;
@@ -152,8 +151,11 @@ namespace CalculadoraCSharp
             operando2 = 0;
             ultimoOperando = 0;
             acumulado = 0;
-
-            return;
+            HabilitaComandos();
+            Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.BorraDisplay(displaySecundario);
+            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
+            
         } //ok
 
         /// <summary>
@@ -221,6 +223,19 @@ namespace CalculadoraCSharp
             BotonDividir.BackColor = Color.MistyRose;
             botonMasMenos.BackColor = Color.MistyRose;
             botonPuntoDecimal.BackColor = Color.MistyRose;
+        }
+
+        /// <summary>
+        /// reseta el estado de la calculadora luego del error
+        /// </summary>
+        private bool CheckeaError()
+        {
+            if (estadoError)
+            {
+                EstadoInicial();
+                return true;
+            }
+            return false;
         }
 
         #endregion
