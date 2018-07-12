@@ -95,6 +95,8 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displaySecundario);
             aguardandoOperando = false;
             operacionActual = "";
+            operando1 = 0;
+            operando2 = 0;
             acumulado = 0;
         } //ok
 
