@@ -20,20 +20,24 @@ namespace CalculadoraCSharp
         #region Variables
 
         //proxima digitacion limpia el display principal
-        private bool esperandoOperando = false;
+        private bool esperandoOperando2 = false;
         //boton igual repite la ultima operacion con el ultimo operando
         private bool repiteUltimaOperacion = false;
         //estado de error
         private bool estadoError = false;
         //última operación selecionada
-        private string operacionActual = "";
+        private string operacionAnterior = "";
+        //ultimo estado display secundario
+        private string ultimoEstadoSecundario = "";
         //números
         private int? acumulado = 0;
-        private int? operando1 = 0;
-        private int? operando2 = 0;
+        private int? operando1 = null;
+        private int? operando2 = null;
         //operando de la ultima operacion
         private int? ultimoOperando = 0;
-        
+        //numero actual en display(para cambio de signo)
+        private int? numeroEnDisplay = 0;
+
         #endregion
 
         #region Eventos
@@ -45,10 +49,10 @@ namespace CalculadoraCSharp
             {
                 if(CheckeaError()) return;
                 //limpia display si usario presiono tecla de operacion anteriormente
-                if (esperandoOperando)
+                if (esperandoOperando2)
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
-                    esperandoOperando = false;
+                    esperandoOperando2 = false;
                 }
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
 
@@ -56,6 +60,7 @@ namespace CalculadoraCSharp
                 if (displayPrincipal.Text == "0") Calculadora.BorraDisplay(displayPrincipal);
                 
                 Calculadora.EscribeDisplay(displayPrincipal, digito.Text, estadoError);
+                if(!estadoError) operando1 = TextoANumero(displayPrincipal);
             }
         } //ok
         
@@ -75,39 +80,39 @@ namespace CalculadoraCSharp
 
         private void BotonOperacion_Click(object sender, EventArgs e)
         {
-            if (sender is Button operacion)
+            if (sender is Button operacionSeleccionada)
             {
-                if (!esperandoOperando)
+                if (!esperandoOperando2 && operando1 == null) ProcesaOperacion(operacionAnterior);
+
+                if (operacionAnterior != operacionSeleccionada.Tag.ToString())
                 {
-                    repiteUltimaOperacion = false;
-                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
-                    if (operando1 != 0) ProcesaOperacion(operacionActual);
-                    operando1 = TextoANumero(displayPrincipal);
-                    operacionActual = operacion.Tag.ToString();
-                    esperandoOperando = true;
+                    CambiaOperacion(operacionSeleccionada);
+                    esperandoOperando2 = true;
                 }
             }
-        } //ok
+        } //retrabajar
 
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
             if(CheckeaError()) return;
             Calculadora.BorraDisplay(displaySecundario);
-            if (operando1 == 0)
+            if (operando2 == null) return;
+            if (operando1 == null)
             {    
                 operando1 = acumulado;
                 operando2 = ultimoOperando;
                 repiteUltimaOperacion = true;
-                esperandoOperando = true;
+                esperandoOperando2 = true;
             }
-            ProcesaOperacion(operacionActual);         
+            ProcesaOperacion(operacionAnterior);         
         } // ok
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
+            numeroEnDisplay = TextoANumero(displayPrincipal);
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(TextoANumero(displayPrincipal)));
+            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(numeroEnDisplay));
         }
 
         #endregion
@@ -117,12 +122,12 @@ namespace CalculadoraCSharp
         /// <summary>
         /// Realiza la operacion seleccionada
         /// </summary>
-        /// <param name="operacionActual">Operacion seleccionada</param>
-        private void ProcesaOperacion(string operacionActual)
+        /// <param name="operacionAnterior">Operacion seleccionada</param>
+        private void ProcesaOperacion(string operacionAnterior)
         {
-            esperandoOperando = false;
+            esperandoOperando2 = false;
             if (!repiteUltimaOperacion) operando2 = TextoANumero(displayPrincipal);
-            switch (operacionActual)
+            switch (operacionAnterior)
             {
                 case "suma":
                     acumulado = Calculadora.Suma(operando1, operando2);                    
@@ -139,7 +144,7 @@ namespace CalculadoraCSharp
                 default:
                     return;
             }
-            operando1 = 0;
+            operando1 = null;
             ultimoOperando = operando2;
             MuestraResultado(acumulado);
         }
@@ -149,19 +154,20 @@ namespace CalculadoraCSharp
         /// </summary>
         private void EstadoInicial()
         {
-            esperandoOperando = false;
+            esperandoOperando2 = false;
             repiteUltimaOperacion = false;
             estadoError = false;
-            operacionActual = "";
-            operando1 = 0;
-            operando2 = 0;
-            ultimoOperando = 0;
+            operacionAnterior = "";
+            ultimoEstadoSecundario = "";
+            operando1 = null;
+            operando2 = null;
             acumulado = 0;
+            ultimoOperando = 0;
+            numeroEnDisplay = 0;
             HabilitaComandos();
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
-            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
-            
+            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);  
         } //ok
 
         /// <summary>
@@ -244,8 +250,29 @@ namespace CalculadoraCSharp
             return false;
         }
 
-        #endregion
+        /// <summary>
+        /// Actualiza el display con la nueva operacion
+        /// </summary>
+        /// <param name="operacionSeleccionada"></param>
+        private void CambiaOperacion(Button operacionSeleccionada)
+        {
+            if (esperandoOperando2) displaySecundario.Text = ultimoEstadoSecundario;
+            ultimoEstadoSecundario = displaySecundario.Text;
+            Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacionSeleccionada.Text);
+            operacionAnterior = operacionSeleccionada.Tag.ToString();
+        }
 
-       
+        #endregion       
     }
 }
+/*
+                if (!esperandoOperando)
+                {
+                    
+                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
+                    if (operando1 != 0) ProcesaOperacion(operacionActual);
+                    operando1 = TextoANumero(displayPrincipal);
+                    operacionActual = operacion.Tag.ToString();
+                    esperandoOperando = true;
+                }
+                */
