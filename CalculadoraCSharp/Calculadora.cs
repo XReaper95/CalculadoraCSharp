@@ -77,7 +77,7 @@ namespace CalculadoraCSharp
         internal static int? Resta(int? numero1, int? numero2)
         {
             return numero1 - numero2;
-        }
+        } // ok
 
         /// <summary>
         /// Realiza la multiplicacion de los numeros
@@ -88,18 +88,34 @@ namespace CalculadoraCSharp
         internal static int? Multiplica(int? numero1, int? numero2)
         {
             return numero1 * numero2;
-        }
+        } //ok
 
+        /// <summary>
+        /// Realiza la division correcta de los números
+        /// </summary>
+        /// <param name="numero1"></param>
+        /// <param name="numero2"></param>
+        /// <returns></returns>
         internal static int? Divide(int? numero1, int? numero2)
         {
             if (numero2 == 0) return null;
             return numero1 / numero2;
-        } 
+        }  //ok
 
-        internal static int? CambiaSigno(int? numero)
+        /// <summary>
+        /// Cambia el signo del número diferente de cero
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        internal static string CambiaSigno(int? numero)
         {
-            return 0;
-        } //TODO implementar
+            if (numero != 0)
+            {
+                numero = -numero;
+                return numero.ToString();
+            }
+            else return "0";
+        } 
         
         #endregion
 

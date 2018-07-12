@@ -87,7 +87,7 @@ namespace CalculadoraCSharp
                     esperandoOperando = true;
                 }
             }
-        } //TODO retrabajar
+        } //ok
 
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
@@ -102,7 +102,13 @@ namespace CalculadoraCSharp
                 esperandoOperando = true;
             }
             ProcesaOperacion(operacionActual);         
-        } //TODO retrabajar
+        } // ok
+
+        private void BotonMasMenos_Click(object sender, EventArgs e)
+        {
+            Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(TextoANumero(displayPrincipal)));
+        }
 
         #endregion
 
@@ -131,7 +137,7 @@ namespace CalculadoraCSharp
                     acumulado = Calculadora.Divide(operando1, operando2);
                     break;
                 default:
-                    break;
+                    return;
             }
             operando1 = 0;
             ultimoOperando = operando2;
@@ -239,5 +245,7 @@ namespace CalculadoraCSharp
         }
 
         #endregion
+
+       
     }
 }

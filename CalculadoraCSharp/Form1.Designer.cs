@@ -318,6 +318,7 @@
             this.botonMasMenos.TabIndex = 18;
             this.botonMasMenos.Text = "±";
             this.botonMasMenos.UseVisualStyleBackColor = false;
+            this.botonMasMenos.Click += new System.EventHandler(this.BotonMasMenos_Click);
             // 
             // botonPuntoDecimal
             // 
