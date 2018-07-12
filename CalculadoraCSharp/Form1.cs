@@ -55,6 +55,7 @@ namespace CalculadoraCSharp
         
         private void BotonClearEntry_Click(object sender, EventArgs e)
         {
+            acumulado = 0;
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, "0");
         } //ok
@@ -72,7 +73,7 @@ namespace CalculadoraCSharp
                 if (!esperandoOperando)
                 {
                     repiteUltimaOperacion = false;
-                    Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
+                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
                     if (operando1 != 0) ProcesaOperacion(operacionActual);
                     operando1 = TextoANumero(displayPrincipal);
                     operacionActual = operacion.Tag.ToString();
@@ -116,9 +117,10 @@ namespace CalculadoraCSharp
                     acumulado = Calculadora.Resta(operando1, operando2);
                     break;
                 case "multiplica":
-
+                    acumulado = Calculadora.Multiplica(operando1, operando2);
+                    break;
                 case "divide":
-
+                    break;
                 default:
                     break;
             }

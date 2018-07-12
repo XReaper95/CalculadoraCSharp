@@ -61,10 +61,16 @@ namespace CalculadoraCSharp
             return numero1 - numero2;
         }
 
+        /// <summary>
+        /// Realiza la multiplicacion de los numeros
+        /// </summary>
+        /// <param name="numero1"></param>
+        /// <param name="numero2"></param>
+        /// <returns></returns>
         internal static int Multiplica(int numero1, int numero2)
         {
-            return 0;
-        } //TODO implementar
+            return numero1 * numero2;
+        }
 
         internal static int? Divide(int numero1, int numero2)
         {

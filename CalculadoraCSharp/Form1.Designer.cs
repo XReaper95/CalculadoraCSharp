@@ -119,9 +119,10 @@
             this.multiplicar.Name = "multiplicar";
             this.multiplicar.Size = new System.Drawing.Size(56, 76);
             this.multiplicar.TabIndex = 11;
-            this.multiplicar.Tag = "multiplicacion";
+            this.multiplicar.Tag = "multiplica";
             this.multiplicar.Text = "×";
             this.multiplicar.UseVisualStyleBackColor = false;
+            this.multiplicar.Click += new System.EventHandler(this.Operacion_Click);
             // 
             // dividir
             // 
