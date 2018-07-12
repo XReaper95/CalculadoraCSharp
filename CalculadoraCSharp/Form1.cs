@@ -105,19 +105,16 @@ namespace CalculadoraCSharp
         /// <param name="operacionActual">Operacion seleccionada</param>
         private void ProcesaOperacion(string operacionActual)
         {
+            esperandoOperando = false;
+            if (!repiteUltimaOperacion) operando2 = TextoANumero(displayPrincipal);
             switch (operacionActual)
             {
                 case "suma":
-                    esperandoOperando = false;
-                    if(!repiteUltimaOperacion) operando2 = TextoANumero(displayPrincipal);
-                    acumulado = Calculadora.Suma(operando1, operando2);
-                    operando1 = 0;
-                    ultimoOperando = operando2;
-                    MuestraResultado(acumulado);
+                    acumulado = Calculadora.Suma(operando1, operando2);                    
                     break;
-
                 case "resta":
-
+                    acumulado = Calculadora.Resta(operando1, operando2);
+                    break;
                 case "multiplica":
 
                 case "divide":
@@ -125,7 +122,10 @@ namespace CalculadoraCSharp
                 default:
                     break;
             }
-        } //TODO implementar resta, multip y div
+            operando1 = 0;
+            ultimoOperando = operando2;
+            MuestraResultado(acumulado);
+        } //TODO implementar multip y div
 
         /// <summary>
         /// Reseta el estado dela calculadora

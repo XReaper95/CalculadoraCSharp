@@ -40,20 +40,26 @@ namespace CalculadoraCSharp
         } // ok
 
         /// <summary>
-        /// Realiza la suma del numero en el display con el resultado total
+        /// Realiza la suma de los numeros
         /// </summary>
-        /// <param name="resultado">Resultado total</param>
-        /// <param name="displayConOperando">Display con elemento a sumar</param>
+        /// <param name="numero1"></param>
+        /// <param name="numero2"></param>
         /// <returns></returns>
         internal static int Suma(int numero1, int numero2)
         {
             return numero1 + numero2;
         } // ok
 
+        /// <summary>
+        /// Realiza la resta de los numeros
+        /// </summary>
+        /// <param name="numero1"></param>
+        /// <param name="numero2"></param>
+        /// <returns></returns>
         internal static int Resta(int numero1, int numero2)
         {
-            return 0;
-        } //TODO implementar
+            return numero1 - numero2;
+        }
 
         internal static int Multiplica(int numero1, int numero2)
         {
