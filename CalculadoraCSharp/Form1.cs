@@ -27,6 +27,8 @@ namespace CalculadoraCSharp
         private bool estadoError = false;
         //última operación selecionada
         private string operacionActual = "";
+        //ultimo estado display secundario
+        private string ultimoDisplaySecundario = "";
         //números
         private int? acumulado = 0;
         private int? operando1 = 0;
@@ -79,8 +81,15 @@ namespace CalculadoraCSharp
         {
             if (sender is Button operacion)
             {
+                if (operacionActual != operacion.Tag.ToString())
+                {
+                    displaySecundario.Text = ultimoDisplaySecundario;
+                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
+                    return;
+                }
                 if (!esperandoOperando)
                 {
+                    ultimoDisplaySecundario = displaySecundario.Text;
                     repiteUltimaOperacion = false;
                     Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
                     if (operando1 != 0) ProcesaOperacion(operacionActual);
@@ -156,6 +165,7 @@ namespace CalculadoraCSharp
             repiteUltimaOperacion = false;
             estadoError = false;
             operacionActual = "";
+            ultimoDisplaySecundario = "";
             operando1 = 0;
             operando2 = 0;
             acumulado = 0;
