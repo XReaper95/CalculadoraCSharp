@@ -33,7 +33,9 @@ namespace CalculadoraCSharp
         private int? operando2 = 0;
         //operando de la ultima operacion
         private int? ultimoOperando = 0;
-        
+        //numero actual en display(para cambio de signo)
+        private int? numeroEnDisplay = 0;
+
         #endregion
 
         #region Eventos
@@ -106,8 +108,9 @@ namespace CalculadoraCSharp
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
+            numeroEnDisplay = TextoANumero(displayPrincipal);
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(TextoANumero(displayPrincipal)));
+            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(numeroEnDisplay));
         }
 
         #endregion
@@ -155,13 +158,13 @@ namespace CalculadoraCSharp
             operacionActual = "";
             operando1 = 0;
             operando2 = 0;
-            ultimoOperando = 0;
             acumulado = 0;
+            ultimoOperando = 0;
+            numeroEnDisplay = 0;
             HabilitaComandos();
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
-            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
-            
+            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);  
         } //ok
 
         /// <summary>
@@ -244,8 +247,6 @@ namespace CalculadoraCSharp
             return false;
         }
 
-        #endregion
-
-       
+        #endregion       
     }
 }
