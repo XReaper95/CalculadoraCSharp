@@ -18,10 +18,11 @@ namespace CalculadoraCSharp
 
         #region Variables
 
-        private static bool insertaNumero = false;
+        private static bool aguardandoOperando = false;
         private static string operacionActual = "";
         private static int acumulado = 0;
-        private static int operando = 0;
+        private static int operando1 = 0;
+        private static int operando2 = 0;
 
         #endregion
 
@@ -33,10 +34,10 @@ namespace CalculadoraCSharp
             if (sender is Button digito)
             {
                 //limpia display si usario presiono tecla de operacion anteriormente
-                if (insertaNumero)
+                if (aguardandoOperando)
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
-                    insertaNumero = false;
+                    aguardandoOperando = false;
                 }
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
 
@@ -45,48 +46,41 @@ namespace CalculadoraCSharp
                 
                 Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
             }
-        }
+        } //ok
         
         private void BotonClearEntry_Click(object sender, EventArgs e)
         {
             Calculadora.BorraDisplay(displayPrincipal);
-        }
-
-        private void botonAllClear_Click(object sender, EventArgs e)
+        } //ok
+        
+        private void BotonAllClear_Click(object sender, EventArgs e)
         {
             //reseta todo
             EstadoInicial();
-        }
+        } //ok
 
         private void Operacion_Click(object sender, EventArgs e)
         {
             if (sender is Button operacion)
             {
-                OperacionParcial(operacion);
+                if (!aguardandoOperando)
+                {
+                    Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
+                    if (operando1 != 0) ProcesaOperacion(operacionActual);
+                    operando1 = TextoANumero(displayPrincipal);
+                    operacionActual = operacion.Tag.ToString();
+                    aguardandoOperando = true;
+                }
             }
-        }
+        } //TODO retrabajar
+
+        
 
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
-            switch (operacionActual)
-            {
-                case "suma":
-                    if (operando == 0) operando = int.Parse(displayPrincipal.Text);
-                    acumulado = Calculadora.Suma(acumulado, operando);
-                    MuestraResultado();
-                    break;
-
-                case "resta":
-
-                case "multiplica":
-
-                case "divide":
-
-                default:
-                    break;
-            }
-        }
+            
+        } //TODO retrabajar
 
         #endregion
 
@@ -99,34 +93,55 @@ namespace CalculadoraCSharp
         {
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
-            insertaNumero = false;
+            aguardandoOperando = false;
             operacionActual = "";
             acumulado = 0;
-        }
+        } //ok
 
         /// <summary>
-        /// Escribe la operacion parcial en le display secundario y determina el primer operando
+        /// Realiza la operacion seleccionada
         /// </summary>
         /// <param name="operacion">Operacion seleccionada</param>
-        private void OperacionParcial(Button operacion)
-        { 
-            operando = 0;
-            operacionActual = operacion.Tag.ToString();
-            insertaNumero = true;
-            Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
-            acumulado = int.Parse(displayPrincipal.Text);
-        }
+        private void ProcesaOperacion(string operacionActual)
+        {
+            switch (operacionActual)
+            {
+                case "suma":
+                    operando2 = TextoANumero(displayPrincipal);
+                    acumulado = Calculadora.Suma(operando1, operando2);
+                    operando1 = 0;
+                    MuestraResultado(acumulado);
+                    break;
+
+                case "resta":
+
+                case "multiplica":
+
+                case "divide":
+
+                default:
+                    break;
+            }
+        } //TODO implementar resta, multip y div
 
         /// <summary>
-        /// Muestra el resultado de la operacion en el display principal
-        /// </summary>
-        private void MuestraResultado()
+            /// Muestra el resultado de la operacion en el display principal
+            /// </summary>
+        private void MuestraResultado(int acumulado)
         {
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.BorraDisplay(displaySecundario);
             Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString());
-            insertaNumero = true;
-        }
+        } // TODO testar
+
+        /// <summary>
+        /// Tranforma el texto numerico de un display a tipo 'int'
+        /// </summary>
+        /// <param name="display">Display con numeros a transformar</param>
+        /// <returns></returns>
+        private int TextoANumero(TextBox display)
+        {
+            return int.Parse(display.Text);
+        } //ok
 
         #endregion
     }

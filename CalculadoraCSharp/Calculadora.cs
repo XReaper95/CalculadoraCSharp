@@ -15,7 +15,7 @@ namespace CalculadoraCSharp
         {
             //evita ceros a la izquierda
             display.Text += texto;
-        }
+        } //ok
 
         /// <summary>
         /// Borra la salida actual del display
@@ -24,36 +24,7 @@ namespace CalculadoraCSharp
         internal static void BorraDisplay(TextBox display)
         {
             display.Text = "";
-        }
-
-        /// <summary>
-        /// Realiza la suma del numero en el display con el resultado total
-        /// </summary>
-        /// <param name="resultado">Resultado total</param>
-        /// <param name="displayConOperando">Display con elemento a sumar</param>
-        /// <returns></returns>
-        internal static int Suma(int numero1, int numero2)
-        {
-            return numero1 + numero2;
-        }
-
-        //TODO implementar
-        internal static int Resta(int operando1, int operando2)
-        {
-            return 0;
-        }
-
-        //TODO implementar
-        internal static int Multiplica(int operando1, int operando2)
-        {
-            return 0;
-        }
-
-        //TODO implementar
-        internal static int? Divide(int operando1, int operando2)
-        {
-            return null;
-        }
+        } //ok
 
         /// <summary>
         /// Muestra error cuando el display sobrepasar los 11 digiros
@@ -66,9 +37,39 @@ namespace CalculadoraCSharp
                 MessageBox.Show("Máximo de 11 dígitos alcanzados", "Error");
                 return;
             }
-        }
+        } // ok
 
+        /// <summary>
+        /// Realiza la suma del numero en el display con el resultado total
+        /// </summary>
+        /// <param name="resultado">Resultado total</param>
+        /// <param name="displayConOperando">Display con elemento a sumar</param>
+        /// <returns></returns>
+        internal static int Suma(int numero1, int numero2)
+        {
+            return numero1 + numero2;
+        } // ok
 
-    #endregion
-}
+        internal static int Resta(int numero1, int numero2)
+        {
+            return 0;
+        } //TODO implementar
+
+        internal static int Multiplica(int numero1, int numero2)
+        {
+            return 0;
+        } //TODO implementar
+
+        internal static int? Divide(int numero1, int numero2)
+        {
+            return null;
+        } //TODO implementar
+
+        internal static int CambiaSigno(int numero)
+        {
+            return 0;
+        } //TODO implementar
+
+        #endregion
+    }
 }

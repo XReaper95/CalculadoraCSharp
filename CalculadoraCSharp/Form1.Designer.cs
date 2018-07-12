@@ -307,7 +307,7 @@
             this.botonAllClear.TabIndex = 15;
             this.botonAllClear.Text = "AC";
             this.botonAllClear.UseVisualStyleBackColor = false;
-            this.botonAllClear.Click += new System.EventHandler(this.botonAllClear_Click);
+            this.botonAllClear.Click += new System.EventHandler(this.BotonAllClear_Click);
             // 
             // boton0
             // 
