@@ -132,9 +132,10 @@
             this.dividir.Name = "dividir";
             this.dividir.Size = new System.Drawing.Size(56, 76);
             this.dividir.TabIndex = 12;
-            this.dividir.Tag = "division";
+            this.dividir.Tag = "divide";
             this.dividir.Text = "÷";
             this.dividir.UseVisualStyleBackColor = false;
+            this.dividir.Click += new System.EventHandler(this.Operacion_Click);
             // 
             // sumar
             // 
