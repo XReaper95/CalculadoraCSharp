@@ -4,16 +4,35 @@ namespace CalculadoraCSharp
 {
     public static class  Calculadora
     {
-       #region Métodos
+        #region Variables privadas
+
+        private static readonly int FUENTE_NUMEROS = 36;
+        private static readonly int FUENTE_LETRAS = 16; 
+
+        #endregion
+
+
+        #region Métodos
 
         /// <summary>
-        /// Escribe en el texto en el display selecionado, evitando ceros a la izquierda.
+        /// Escribe en el texto en el display selecionado.
         /// </summary>
         /// <param name="display">Display a ser usado</param>
         /// <param name="texto">Texto a ser mostrado</param>
         internal static void EscribeDisplay(TextBox display, string texto)
         {
-            //evita ceros a la izquierda
+            display.Text += texto;
+        } //ok
+
+        /// <summary>
+        /// Escribe en el texto en el display selecionado.Prepara texto para mensage de error
+        /// </summary>
+        /// <param name="display">Display a ser usado</param>
+        /// <param name="texto">Texto a ser mostrado</param>
+        internal static void EscribeDisplay(TextBox display, string texto, bool estadoError)
+        {
+            CambiaFuente(display, FUENTE_NUMEROS);
+            if (estadoError) CambiaFuente(display, FUENTE_LETRAS);
             display.Text += texto;
         } //ok
 
@@ -82,6 +101,27 @@ namespace CalculadoraCSharp
         {
             return 0;
         } //TODO implementar
+        
+        #endregion
+
+        #region Métodos Auxiliares
+
+        /// <summary>
+        /// Cambia el tamaño de la fuente del display seleccionado
+        /// </summary>
+        /// <param name="display"></param>
+        /// <param name="tamano"></param>
+        private static void CambiaFuente(TextBox display, int tamano)
+        {
+            display.Font = new System.Drawing.Font(display.Font.FontFamily,tamano);
+            display.TextAlign = HorizontalAlignment.Center;
+            display.Anchor = AnchorStyles.Left;
+            if(tamano == FUENTE_NUMEROS)
+            {
+                display.TextAlign = HorizontalAlignment.Right;
+                display.Anchor = AnchorStyles.Right;
+            }
+        } 
 
         #endregion
     }

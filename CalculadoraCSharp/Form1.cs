@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CalculadoraCSharp
@@ -22,8 +23,8 @@ namespace CalculadoraCSharp
         private bool esperandoOperando = false;
         //boton igual repite la ultima operacion con el ultimo operando
         private bool repiteUltimaOperacion = false;
-        //fue realizada división por cero
-        private bool divisionPorCero = false;
+        //estado de error
+        private bool estadoError = false;
         //última operación selecionada
         private string operacionActual = "";
         //números
@@ -53,7 +54,7 @@ namespace CalculadoraCSharp
                 //evita ceros a la izquierda
                 if (displayPrincipal.Text == "0") Calculadora.BorraDisplay(displayPrincipal);
                 
-                Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
+                Calculadora.EscribeDisplay(displayPrincipal, digito.Text, estadoError);
             }
         } //ok
         
@@ -61,7 +62,7 @@ namespace CalculadoraCSharp
         {
             acumulado = 0;
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, "0");
+            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
         } //ok
         
         private void BotonAllClear_Click(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace CalculadoraCSharp
             EstadoInicial();
         } //ok
 
-        private void Operacion_Click(object sender, EventArgs e)
+        private void BotonOperacion_Click(object sender, EventArgs e)
         {
             if (sender is Button operacion)
             {
@@ -86,10 +87,10 @@ namespace CalculadoraCSharp
             }
         } //TODO retrabajar
 
-        private void ResultadoOperacion_Click(object sender, EventArgs e)
+        private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
-            Calculadora.BorraDisplay(displaySecundario);
+            if (estadoError) EstadoInicial();
             if (operando1 == 0)
             {
                 operando1 = acumulado;
@@ -132,22 +133,27 @@ namespace CalculadoraCSharp
             operando1 = 0;
             ultimoOperando = operando2;
             MuestraResultado(acumulado);
-        } //TODO implementar multip y div
+        }
 
         /// <summary>
         /// Reseta el estado dela calculadora
         /// </summary>
         private void EstadoInicial()
         {
+            HabilitaComandos();
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
-            Calculadora.EscribeDisplay(displayPrincipal, "0");
+            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
             esperandoOperando = false;
+            repiteUltimaOperacion = false;
+            estadoError = false;
             operacionActual = "";
             operando1 = 0;
             operando2 = 0;
             ultimoOperando = 0;
             acumulado = 0;
+
+            return;
         } //ok
 
         /// <summary>
@@ -157,12 +163,14 @@ namespace CalculadoraCSharp
         {
             if(acumulado == null)
             {
-                Calculadora.EscribeDisplay(displayPrincipal, "Imposible dividir por cero");
-                divisionPorCero = true;
+                estadoError = true;
+                Calculadora.BorraDisplay(displayPrincipal);
+                Calculadora.EscribeDisplay(displayPrincipal, "Imposible dividir por cero",estadoError);
+                DeshabilitaComandos();
                 return;
             }
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString());
+            Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString(), estadoError);
         } //ok
 
         /// <summary>
@@ -170,10 +178,50 @@ namespace CalculadoraCSharp
         /// </summary>
         /// <param name="display">Display con numeros a transformar</param>
         /// <returns></returns>
-        private int TextoANumero(TextBox display)
+        private int? TextoANumero(TextBox display)
         {
             return int.Parse(display.Text);
         } //ok
+
+        /// <summary>
+        /// Desabilita comandos criticos cuando error
+        /// </summary>
+        private void DeshabilitaComandos()
+        {
+            botonSumar.Enabled = false;
+            botonRestar.Enabled = false;
+            botonMultiplicar.Enabled = false;
+            BotonDividir.Enabled = false;
+            botonMasMenos.Enabled = false;
+            botonPuntoDecimal.Enabled = false;
+
+            botonSumar.BackColor = Color.DarkGray;
+            botonRestar.BackColor = Color.DarkGray;
+            botonMultiplicar.BackColor = Color.DarkGray;
+            BotonDividir.BackColor = Color.DarkGray;
+            botonMasMenos.BackColor = Color.DarkGray;
+            botonPuntoDecimal.BackColor = Color.DarkGray;
+        }
+
+        /// <summary>
+        /// Habilita comandos criticos cuando error fue tratado
+        /// </summary>
+        private void HabilitaComandos()
+        {
+            botonSumar.Enabled = true;
+            botonRestar.Enabled = true;
+            botonMultiplicar.Enabled = true;
+            BotonDividir.Enabled = true;
+            botonMasMenos.Enabled = true;
+            botonPuntoDecimal.Enabled = true;
+
+            botonSumar.BackColor = Color.MistyRose;
+            botonRestar.BackColor = Color.MistyRose;
+            botonMultiplicar.BackColor = Color.MistyRose;
+            BotonDividir.BackColor = Color.MistyRose;
+            botonMasMenos.BackColor = Color.MistyRose;
+            botonPuntoDecimal.BackColor = Color.MistyRose;
+        }
 
         #endregion
     }

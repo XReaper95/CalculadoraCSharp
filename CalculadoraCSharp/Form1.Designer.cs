@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.displayPrincipal = new System.Windows.Forms.TextBox();
-            this.multiplicar = new System.Windows.Forms.Button();
-            this.dividir = new System.Windows.Forms.Button();
-            this.sumar = new System.Windows.Forms.Button();
-            this.restar = new System.Windows.Forms.Button();
+            this.botonMultiplicar = new System.Windows.Forms.Button();
+            this.BotonDividir = new System.Windows.Forms.Button();
+            this.botonSumar = new System.Windows.Forms.Button();
+            this.botonRestar = new System.Windows.Forms.Button();
             this.botonClearEntry = new System.Windows.Forms.Button();
             this.boton7 = new System.Windows.Forms.Button();
             this.boton8 = new System.Windows.Forms.Button();
@@ -48,9 +48,9 @@
             this.botonAllClear = new System.Windows.Forms.Button();
             this.boton0 = new System.Windows.Forms.Button();
             this.botonMasMenos = new System.Windows.Forms.Button();
-            this.puntoDecimal = new System.Windows.Forms.Button();
+            this.botonPuntoDecimal = new System.Windows.Forms.Button();
             this.displaySecundario = new System.Windows.Forms.TextBox();
-            this.ResultadoOperacion = new System.Windows.Forms.Button();
+            this.botonResultadoOperacion = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,10 +63,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.displayPrincipal, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.multiplicar, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.dividir, 4, 3);
-            this.tableLayoutPanel1.Controls.Add(this.sumar, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.restar, 4, 4);
+            this.tableLayoutPanel1.Controls.Add(this.botonMultiplicar, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.BotonDividir, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.botonSumar, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.botonRestar, 4, 4);
             this.tableLayoutPanel1.Controls.Add(this.botonClearEntry, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.boton7, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.boton8, 1, 2);
@@ -80,9 +80,9 @@
             this.tableLayoutPanel1.Controls.Add(this.botonAllClear, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.boton0, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.botonMasMenos, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.puntoDecimal, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.botonPuntoDecimal, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.displaySecundario, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ResultadoOperacion, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.botonResultadoOperacion, 3, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -99,11 +99,12 @@
             // 
             // displayPrincipal
             // 
+            this.displayPrincipal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.displayPrincipal.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.displayPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tableLayoutPanel1.SetColumnSpan(this.displayPrincipal, 5);
             this.displayPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayPrincipal.Location = new System.Drawing.Point(3, 24);
+            this.displayPrincipal.Location = new System.Drawing.Point(3, 25);
             this.displayPrincipal.Name = "displayPrincipal";
             this.displayPrincipal.ReadOnly = true;
             this.displayPrincipal.Size = new System.Drawing.Size(307, 55);
@@ -111,61 +112,61 @@
             this.displayPrincipal.Text = "0";
             this.displayPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // multiplicar
+            // botonMultiplicar
             // 
-            this.multiplicar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.multiplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.multiplicar.Location = new System.Drawing.Point(189, 172);
-            this.multiplicar.Name = "multiplicar";
-            this.multiplicar.Size = new System.Drawing.Size(56, 76);
-            this.multiplicar.TabIndex = 11;
-            this.multiplicar.Tag = "multiplica";
-            this.multiplicar.Text = "×";
-            this.multiplicar.UseVisualStyleBackColor = false;
-            this.multiplicar.Click += new System.EventHandler(this.Operacion_Click);
+            this.botonMultiplicar.BackColor = System.Drawing.Color.MistyRose;
+            this.botonMultiplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonMultiplicar.Location = new System.Drawing.Point(189, 172);
+            this.botonMultiplicar.Name = "botonMultiplicar";
+            this.botonMultiplicar.Size = new System.Drawing.Size(56, 76);
+            this.botonMultiplicar.TabIndex = 11;
+            this.botonMultiplicar.Tag = "multiplica";
+            this.botonMultiplicar.Text = "×";
+            this.botonMultiplicar.UseVisualStyleBackColor = false;
+            this.botonMultiplicar.Click += new System.EventHandler(this.BotonOperacion_Click);
             // 
-            // dividir
+            // BotonDividir
             // 
-            this.dividir.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.dividir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dividir.Location = new System.Drawing.Point(251, 172);
-            this.dividir.Name = "dividir";
-            this.dividir.Size = new System.Drawing.Size(56, 76);
-            this.dividir.TabIndex = 12;
-            this.dividir.Tag = "divide";
-            this.dividir.Text = "÷";
-            this.dividir.UseVisualStyleBackColor = false;
-            this.dividir.Click += new System.EventHandler(this.Operacion_Click);
+            this.BotonDividir.BackColor = System.Drawing.Color.MistyRose;
+            this.BotonDividir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BotonDividir.Location = new System.Drawing.Point(251, 172);
+            this.BotonDividir.Name = "BotonDividir";
+            this.BotonDividir.Size = new System.Drawing.Size(56, 76);
+            this.BotonDividir.TabIndex = 12;
+            this.BotonDividir.Tag = "divide";
+            this.BotonDividir.Text = "÷";
+            this.BotonDividir.UseVisualStyleBackColor = false;
+            this.BotonDividir.Click += new System.EventHandler(this.BotonOperacion_Click);
             // 
-            // sumar
+            // botonSumar
             // 
-            this.sumar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.sumar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sumar.Location = new System.Drawing.Point(189, 256);
-            this.sumar.Name = "sumar";
-            this.sumar.Size = new System.Drawing.Size(56, 76);
-            this.sumar.TabIndex = 9;
-            this.sumar.Tag = "suma";
-            this.sumar.Text = "+";
-            this.sumar.UseVisualStyleBackColor = false;
-            this.sumar.Click += new System.EventHandler(this.Operacion_Click);
+            this.botonSumar.BackColor = System.Drawing.Color.MistyRose;
+            this.botonSumar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonSumar.Location = new System.Drawing.Point(189, 256);
+            this.botonSumar.Name = "botonSumar";
+            this.botonSumar.Size = new System.Drawing.Size(56, 76);
+            this.botonSumar.TabIndex = 9;
+            this.botonSumar.Tag = "suma";
+            this.botonSumar.Text = "+";
+            this.botonSumar.UseVisualStyleBackColor = false;
+            this.botonSumar.Click += new System.EventHandler(this.BotonOperacion_Click);
             // 
-            // restar
+            // botonRestar
             // 
-            this.restar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.restar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.restar.Location = new System.Drawing.Point(251, 256);
-            this.restar.Name = "restar";
-            this.restar.Size = new System.Drawing.Size(56, 76);
-            this.restar.TabIndex = 10;
-            this.restar.Tag = "resta";
-            this.restar.Text = "-";
-            this.restar.UseVisualStyleBackColor = false;
-            this.restar.Click += new System.EventHandler(this.Operacion_Click);
+            this.botonRestar.BackColor = System.Drawing.Color.MistyRose;
+            this.botonRestar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonRestar.Location = new System.Drawing.Point(251, 256);
+            this.botonRestar.Name = "botonRestar";
+            this.botonRestar.Size = new System.Drawing.Size(56, 76);
+            this.botonRestar.TabIndex = 10;
+            this.botonRestar.Tag = "resta";
+            this.botonRestar.Text = "-";
+            this.botonRestar.UseVisualStyleBackColor = false;
+            this.botonRestar.Click += new System.EventHandler(this.BotonOperacion_Click);
             // 
             // botonClearEntry
             // 
-            this.botonClearEntry.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.botonClearEntry.BackColor = System.Drawing.Color.MistyRose;
             this.botonClearEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonClearEntry.Location = new System.Drawing.Point(251, 88);
             this.botonClearEntry.Name = "botonClearEntry";
@@ -177,7 +178,7 @@
             // 
             // boton7
             // 
-            this.boton7.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton7.BackColor = System.Drawing.Color.MistyRose;
             this.boton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton7.Location = new System.Drawing.Point(3, 88);
             this.boton7.Name = "boton7";
@@ -189,7 +190,7 @@
             // 
             // boton8
             // 
-            this.boton8.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton8.BackColor = System.Drawing.Color.MistyRose;
             this.boton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton8.Location = new System.Drawing.Point(65, 88);
             this.boton8.Name = "boton8";
@@ -201,7 +202,7 @@
             // 
             // boton9
             // 
-            this.boton9.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton9.BackColor = System.Drawing.Color.MistyRose;
             this.boton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton9.Location = new System.Drawing.Point(127, 88);
             this.boton9.Name = "boton9";
@@ -213,7 +214,7 @@
             // 
             // boton4
             // 
-            this.boton4.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton4.BackColor = System.Drawing.Color.MistyRose;
             this.boton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton4.Location = new System.Drawing.Point(3, 172);
             this.boton4.Name = "boton4";
@@ -225,7 +226,7 @@
             // 
             // boton5
             // 
-            this.boton5.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton5.BackColor = System.Drawing.Color.MistyRose;
             this.boton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton5.Location = new System.Drawing.Point(65, 172);
             this.boton5.Name = "boton5";
@@ -237,7 +238,7 @@
             // 
             // boton6
             // 
-            this.boton6.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton6.BackColor = System.Drawing.Color.MistyRose;
             this.boton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton6.Location = new System.Drawing.Point(127, 172);
             this.boton6.Name = "boton6";
@@ -249,7 +250,7 @@
             // 
             // boton1
             // 
-            this.boton1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton1.BackColor = System.Drawing.Color.MistyRose;
             this.boton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton1.Location = new System.Drawing.Point(3, 256);
             this.boton1.Name = "boton1";
@@ -261,7 +262,7 @@
             // 
             // boton2
             // 
-            this.boton2.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton2.BackColor = System.Drawing.Color.MistyRose;
             this.boton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton2.Location = new System.Drawing.Point(65, 256);
             this.boton2.Name = "boton2";
@@ -273,7 +274,7 @@
             // 
             // boton3
             // 
-            this.boton3.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton3.BackColor = System.Drawing.Color.MistyRose;
             this.boton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton3.Location = new System.Drawing.Point(127, 256);
             this.boton3.Name = "boton3";
@@ -285,7 +286,7 @@
             // 
             // botonAllClear
             // 
-            this.botonAllClear.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.botonAllClear.BackColor = System.Drawing.Color.MistyRose;
             this.botonAllClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonAllClear.Location = new System.Drawing.Point(189, 88);
             this.botonAllClear.Name = "botonAllClear";
@@ -297,7 +298,7 @@
             // 
             // boton0
             // 
-            this.boton0.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.boton0.BackColor = System.Drawing.Color.MistyRose;
             this.boton0.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton0.Location = new System.Drawing.Point(65, 340);
             this.boton0.Name = "boton0";
@@ -309,7 +310,7 @@
             // 
             // botonMasMenos
             // 
-            this.botonMasMenos.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.botonMasMenos.BackColor = System.Drawing.Color.MistyRose;
             this.botonMasMenos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonMasMenos.Location = new System.Drawing.Point(3, 340);
             this.botonMasMenos.Name = "botonMasMenos";
@@ -318,16 +319,16 @@
             this.botonMasMenos.Text = "±";
             this.botonMasMenos.UseVisualStyleBackColor = false;
             // 
-            // puntoDecimal
+            // botonPuntoDecimal
             // 
-            this.puntoDecimal.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.puntoDecimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.puntoDecimal.Location = new System.Drawing.Point(127, 340);
-            this.puntoDecimal.Name = "puntoDecimal";
-            this.puntoDecimal.Size = new System.Drawing.Size(56, 78);
-            this.puntoDecimal.TabIndex = 13;
-            this.puntoDecimal.Text = ".";
-            this.puntoDecimal.UseVisualStyleBackColor = false;
+            this.botonPuntoDecimal.BackColor = System.Drawing.Color.MistyRose;
+            this.botonPuntoDecimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonPuntoDecimal.Location = new System.Drawing.Point(127, 340);
+            this.botonPuntoDecimal.Name = "botonPuntoDecimal";
+            this.botonPuntoDecimal.Size = new System.Drawing.Size(56, 78);
+            this.botonPuntoDecimal.TabIndex = 13;
+            this.botonPuntoDecimal.Text = ".";
+            this.botonPuntoDecimal.UseVisualStyleBackColor = false;
             // 
             // displaySecundario
             // 
@@ -342,18 +343,18 @@
             this.displaySecundario.TabIndex = 20;
             this.displaySecundario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // ResultadoOperacion
+            // botonResultadoOperacion
             // 
-            this.ResultadoOperacion.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.tableLayoutPanel1.SetColumnSpan(this.ResultadoOperacion, 2);
-            this.ResultadoOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResultadoOperacion.Location = new System.Drawing.Point(189, 340);
-            this.ResultadoOperacion.Name = "ResultadoOperacion";
-            this.ResultadoOperacion.Size = new System.Drawing.Size(118, 76);
-            this.ResultadoOperacion.TabIndex = 22;
-            this.ResultadoOperacion.Text = "=";
-            this.ResultadoOperacion.UseVisualStyleBackColor = false;
-            this.ResultadoOperacion.Click += new System.EventHandler(this.ResultadoOperacion_Click);
+            this.botonResultadoOperacion.BackColor = System.Drawing.Color.MistyRose;
+            this.tableLayoutPanel1.SetColumnSpan(this.botonResultadoOperacion, 2);
+            this.botonResultadoOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonResultadoOperacion.Location = new System.Drawing.Point(189, 340);
+            this.botonResultadoOperacion.Name = "botonResultadoOperacion";
+            this.botonResultadoOperacion.Size = new System.Drawing.Size(118, 76);
+            this.botonResultadoOperacion.TabIndex = 22;
+            this.botonResultadoOperacion.Text = "=";
+            this.botonResultadoOperacion.UseVisualStyleBackColor = false;
+            this.botonResultadoOperacion.Click += new System.EventHandler(this.BotonResultadoOperacion_Click);
             // 
             // Form1
             // 
@@ -385,18 +386,18 @@
         private System.Windows.Forms.Button boton1;
         private System.Windows.Forms.Button boton2;
         private System.Windows.Forms.Button boton3;
-        private System.Windows.Forms.Button sumar;
-        private System.Windows.Forms.Button restar;
-        private System.Windows.Forms.Button multiplicar;
-        private System.Windows.Forms.Button dividir;
-        private System.Windows.Forms.Button puntoDecimal;
+        private System.Windows.Forms.Button botonSumar;
+        private System.Windows.Forms.Button botonRestar;
+        private System.Windows.Forms.Button botonMultiplicar;
+        private System.Windows.Forms.Button BotonDividir;
+        private System.Windows.Forms.Button botonPuntoDecimal;
         private System.Windows.Forms.Button botonAllClear;
         private System.Windows.Forms.Button botonClearEntry;
         private System.Windows.Forms.Button boton0;
         private System.Windows.Forms.Button botonMasMenos;
         private System.Windows.Forms.TextBox displayPrincipal;
         private System.Windows.Forms.TextBox displaySecundario;
-        private System.Windows.Forms.Button ResultadoOperacion;
+        private System.Windows.Forms.Button botonResultadoOperacion;
     }
 }
 
