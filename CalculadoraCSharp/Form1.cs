@@ -19,10 +19,12 @@ namespace CalculadoraCSharp
         #region Variables
 
         private static bool aguardandoOperando = false;
+        private static bool cambiaOperando2 = false;
         private static string operacionActual = "";
         private static int acumulado = 0;
         private static int operando1 = 0;
         private static int operando2 = 0;
+        private static int ultimoOperando = 0;
 
         #endregion
 
@@ -51,6 +53,7 @@ namespace CalculadoraCSharp
         private void BotonClearEntry_Click(object sender, EventArgs e)
         {
             Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.EscribeDisplay(displayPrincipal, "0");
         } //ok
         
         private void BotonAllClear_Click(object sender, EventArgs e)
@@ -65,6 +68,7 @@ namespace CalculadoraCSharp
             {
                 if (!aguardandoOperando)
                 {
+                    cambiaOperando2 = false;
                     Calculadora.EscribeDisplay(displaySecundario, displayPrincipal.Text + " " + operacion.Text);
                     if (operando1 != 0) ProcesaOperacion(operacionActual);
                     operando1 = TextoANumero(displayPrincipal);
@@ -74,31 +78,22 @@ namespace CalculadoraCSharp
             }
         } //TODO retrabajar
 
-        
-
         private void ResultadoOperacion_Click(object sender, EventArgs e)
         {
             //muestra el resultado de la operacion actual en el display principal
-            
+            Calculadora.BorraDisplay(displaySecundario);
+            if (operando1 == 0)
+            {
+                operando1 = acumulado;
+                operando2 = ultimoOperando;
+                cambiaOperando2 = true;
+            }
+            ProcesaOperacion(operacionActual);         
         } //TODO retrabajar
 
         #endregion
 
         #region Métodos Auxiliares
-
-        /// <summary>
-        /// Reseta el estado dela calculadora
-        /// </summary>
-        private void EstadoInicial()
-        {
-            Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.BorraDisplay(displaySecundario);
-            aguardandoOperando = false;
-            operacionActual = "";
-            operando1 = 0;
-            operando2 = 0;
-            acumulado = 0;
-        } //ok
 
         /// <summary>
         /// Realiza la operacion seleccionada
@@ -109,9 +104,10 @@ namespace CalculadoraCSharp
             switch (operacionActual)
             {
                 case "suma":
-                    operando2 = TextoANumero(displayPrincipal);
+                    if(!cambiaOperando2) operando2 = TextoANumero(displayPrincipal);
                     acumulado = Calculadora.Suma(operando1, operando2);
                     operando1 = 0;
+                    ultimoOperando = operando2;
                     MuestraResultado(acumulado);
                     break;
 
@@ -127,13 +123,28 @@ namespace CalculadoraCSharp
         } //TODO implementar resta, multip y div
 
         /// <summary>
+        /// Reseta el estado dela calculadora
+        /// </summary>
+        private void EstadoInicial()
+        {
+            Calculadora.BorraDisplay(displayPrincipal);
+            Calculadora.BorraDisplay(displaySecundario);
+            aguardandoOperando = false;
+            operacionActual = "";
+            operando1 = 0;
+            operando2 = 0;
+            ultimoOperando = 0;
+            acumulado = 0;
+        } //ok
+
+        /// <summary>
             /// Muestra el resultado de la operacion en el display principal
             /// </summary>
         private void MuestraResultado(int acumulado)
         {
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString());
-        } // TODO testar
+        } //ok
 
         /// <summary>
         /// Tranforma el texto numerico de un display a tipo 'int'
