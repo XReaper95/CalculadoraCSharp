@@ -78,7 +78,7 @@ namespace CalculadoraCSharp
         {
             if (sender is Button operacion)
             {
-                CambiaOperacion(operacion);
+                if(Seleccion(operacion) != operacionActual) CambiaOperacion(operacion);
             }
         } 
 
@@ -226,11 +226,14 @@ namespace CalculadoraCSharp
                 displaySecundario.Text = ultimoDisplaySecundario;
                 Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
                 operacionActual = Seleccion(operacion);
+                return;
             }
-
-            ultimoDisplaySecundario = displaySecundario.Text;
-            Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
-            operacionActual = Seleccion(operacion);
+            else
+            {
+                ultimoDisplaySecundario = displaySecundario.Text;
+                Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
+                operacionActual = Seleccion(operacion);
+            }
         }
 
         #endregion       
