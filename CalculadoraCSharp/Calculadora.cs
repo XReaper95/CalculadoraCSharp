@@ -81,6 +81,21 @@ namespace CalculadoraCSharp
             }
         } //ok
 
+        /// <summary>
+        /// Cambia el signo del número diferente de cero
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        internal static string CambiaSigno(int? numero)
+        {
+            if (numero != 0)
+            {
+                numero = -numero;
+                return numero.ToString();
+            }
+            else return "0";
+        }
+
         #endregion
 
         #region Métodos Auxiliares
