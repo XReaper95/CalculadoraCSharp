@@ -12,22 +12,22 @@ namespace CalculadoraCSharp
         #endregion
 
         #region Métodos
-
+        
         /// <summary>
-        /// Escribe en el texto en el display selecionado.
+        /// Muestra el texto en el display
         /// </summary>
-        /// <param name="display">Display a ser usado</param>
-        /// <param name="texto">Texto a ser mostrado</param>
+        /// <param name="display"></param>
+        /// <param name="texto"></param>
         internal static void EscribeDisplay(TextBox display, string texto)
         {
             display.Text += texto;
         } //ok
-
         /// <summary>
-        /// Escribe en el texto en el display selecionado.Prepara texto para mensage de error
+        /// Muestra resultado en el display, formata si exite error
         /// </summary>
-        /// <param name="display">Display a ser usado</param>
-        /// <param name="texto">Texto a ser mostrado</param>
+        /// <param name="display"></param>
+        /// <param name="texto"></param>
+        /// <param name="estadoError"></param>
         internal static void EscribeDisplay(TextBox display, string texto, bool estadoError)
         {
             CambiaFuente(display, FUENTE_NUMEROS);
@@ -58,68 +58,77 @@ namespace CalculadoraCSharp
         } // ok
 
         /// <summary>
+        /// Realiza la operacion sobre los operandos
+        /// </summary>
+        /// <param name="operacionActual"></param>
+        /// <param name="operando1"></param>
+        /// <param name="operando2"></param>
+        /// <returns>Resultado de la operacion</returns>
+        internal static int? Calcula(string operacion, int? operando1, int? operando2)
+        {
+            switch (operacion)
+            {
+                case "suma":
+                    return Suma(operando1, operando2);
+                case "resta":
+                    return  Resta(operando1, operando2);
+                case "multiplica":
+                    return Multiplica(operando1, operando2);
+                case "divide":
+                    return Divide(operando1, operando2);
+                default:
+                    return null;
+            }
+        }
+
+        #endregion
+
+        #region Métodos Auxiliares
+
+        /// <summary>
         /// Realiza la suma de los numeros
         /// </summary>
-        /// <param name="numero1"></param>
-        /// <param name="numero2"></param>
+        /// <param name="sumando1"></param>
+        /// <param name="sumando2"></param>
         /// <returns></returns>
-        internal static int? Suma(int? numero1, int? numero2)
+        private static int? Suma(int? sumando1, int? sumando2)
         {
-            return numero1 + numero2;
+            return sumando1 + sumando2;
         } // ok
 
         /// <summary>
         /// Realiza la resta de los numeros
         /// </summary>
-        /// <param name="numero1"></param>
-        /// <param name="numero2"></param>
+        /// <param name="minuendo"></param>
+        /// <param name="sustraendo"></param>
         /// <returns></returns>
-        internal static int? Resta(int? numero1, int? numero2)
+        private static int? Resta(int? minuendo, int? sustraendo)
         {
-            return numero1 - numero2;
+            return minuendo - sustraendo;
         } // ok
 
         /// <summary>
         /// Realiza la multiplicacion de los numeros
         /// </summary>
-        /// <param name="numero1"></param>
-        /// <param name="numero2"></param>
+        /// <param name="multiplicando"></param>
+        /// <param name="multiplicador"></param>
         /// <returns></returns>
-        internal static int? Multiplica(int? numero1, int? numero2)
+        private static int? Multiplica(int? multiplicando, int? multiplicador)
         {
-            return numero1 * numero2;
+            return multiplicando * multiplicador;
         } //ok
 
         /// <summary>
         /// Realiza la division correcta de los números
         /// </summary>
-        /// <param name="numero1"></param>
-        /// <param name="numero2"></param>
+        /// <param name="dividendo"></param>
+        /// <param name="divisor"></param>
         /// <returns></returns>
-        internal static int? Divide(int? numero1, int? numero2)
+        private static int? Divide(int? dividendo, int? divisor)
         {
-            if (numero2 == 0) return null;
-            return numero1 / numero2;
+            if (divisor == 0) return null;
+            return dividendo / divisor;
         }  //ok
-
-        /// <summary>
-        /// Cambia el signo del número diferente de cero
-        /// </summary>
-        /// <param name="numero"></param>
-        /// <returns></returns>
-        internal static string CambiaSigno(int? numero)
-        {
-            if (numero != 0)
-            {
-                numero = -numero;
-                return numero.ToString();
-            }
-            else return "0";
-        } 
-        
-        #endregion
-
-        #region Métodos Auxiliares
 
         /// <summary>
         /// Cambia el tamaño de la fuente del display seleccionado
@@ -131,7 +140,7 @@ namespace CalculadoraCSharp
             display.Font = new System.Drawing.Font(display.Font.FontFamily,tamano);
             display.Anchor = AnchorStyles.Left;
             if(tamano == FUENTE_NUMEROS) display.Anchor = AnchorStyles.Right;
-        } 
+        }  //ok
 
         #endregion
     }
