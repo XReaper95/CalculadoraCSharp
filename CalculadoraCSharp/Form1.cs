@@ -44,32 +44,24 @@ namespace CalculadoraCSharp
 
         private void BotonNumerico_Click(object sender, EventArgs e)
         {
-            //nuevo padron para eventos
             if (sender is Button digito)
             {
                 if(CheckeaError()) return;
-                //limpia display si usario presiono tecla de operacion anteriormente
-                if (esperandoOperando)
-                {
-                    Calculadora.BorraDisplay(displayPrincipal);
-                    esperandoOperando = false;
-                }
+                LimpiaDigitacion(esperandoOperando);
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
-
                 //evita ceros a la izquierda
                 if (displayPrincipal.Text == "0") Calculadora.BorraDisplay(displayPrincipal);
-                
-                Calculadora.EscribeDisplay(displayPrincipal, digito.Text, estadoError);
+                operador1 = TextoANumero(displayPrincipal);
+                Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
             }
-        } //ok
+        }
         
         private void BotonClearEntry_Click(object sender, EventArgs e)
         {
             if(CheckeaError()) return;
-            acumulado = 0;
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);
-        } //ok
+            Calculadora.EscribeDisplay(displayPrincipal, "0");
+        }
         
         private void BotonAllClear_Click(object sender, EventArgs e)
         {
@@ -175,7 +167,7 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
             Calculadora.EscribeDisplay(displayPrincipal, "0", estadoError);  
-        } //ok
+        }
 
         /// <summary>
             /// Muestra el resultado de la operacion en el display principal
@@ -191,8 +183,8 @@ namespace CalculadoraCSharp
                 return;
             }
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString(), estadoError);
-        } //ok
+            Calculadora.EscribeDisplay(displayPrincipal, acumulado.ToString());
+        }
 
         /// <summary>
         /// Tranforma el texto numerico de un display a tipo 'int'
@@ -202,7 +194,7 @@ namespace CalculadoraCSharp
         private int? TextoANumero(TextBox display)
         {
             return int.Parse(display.Text);
-        } //ok
+        }
 
         /// <summary>
         /// Desabilita comandos criticos cuando error
@@ -255,6 +247,15 @@ namespace CalculadoraCSharp
                 return true;
             }
             return false;
+        }
+
+        private void LimpiaDigitacion(bool esperandoOperando)
+        {
+            if (esperandoOperando)
+            {
+                Calculadora.BorraDisplay(displayPrincipal);
+                esperandoOperando = false;
+            }
         }
 
         #endregion       
