@@ -79,7 +79,7 @@ namespace CalculadoraCSharp
                 default:
                     return null;
             }
-        }
+        } //ok
 
         #endregion
 
