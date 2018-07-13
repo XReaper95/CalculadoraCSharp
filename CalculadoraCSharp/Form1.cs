@@ -78,7 +78,13 @@ namespace CalculadoraCSharp
         {
             if (sender is Button operacion)
             {
-                if(Seleccion(operacion) != operacionActual) CambiaOperacion(operacion);
+                if(!esperandoOperando2 && operando2 != null)
+                {
+
+                }
+                operando1 = TextoANumero(displayPrincipal);
+                CambiaOperacion(operacion);
+                esperandoOperando2 = true;
             }
         } 
 
@@ -87,8 +93,10 @@ namespace CalculadoraCSharp
             if(Error()) return;
             if (operacionActual == null) return;
             Calculadora.BorraDisplay(displaySecundario);
+            operando2 = TextoANumero(displayPrincipal);
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             MuestraResultado(resultado);
+            esperandoOperando2 = false;
         }
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
