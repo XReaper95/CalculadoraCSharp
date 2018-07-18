@@ -86,8 +86,6 @@ namespace CalculadoraCSharp
             else if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             MuestraResultado(resultado);
-            operando1 = null;
-            operando2 = null;
             limpiaDisplay = true;
         }
 
@@ -149,6 +147,8 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displaySecundario);
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
+            operando1 = null;
+            operando2 = null;
         }
 
         /// <summary>
