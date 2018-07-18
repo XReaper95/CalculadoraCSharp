@@ -98,6 +98,18 @@ namespace CalculadoraCSharp
             Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(numeroEnDisplay_temp));
         }
 
+        private void BotonPuntoDecimal_Click(object sender, EventArgs e)
+        {
+            if(displayPrincipal.Text.Contains(",")) return;
+            if (esperandoOperando2 || operando1 == null && operando2 == null)
+            {
+                Calculadora.BorraDisplay(displayPrincipal);
+                Calculadora.EscribeDisplay(displayPrincipal, "0");
+                esperandoOperando2 = false;
+            }
+            Calculadora.EscribeDisplay(displayPrincipal, ",");
+        }
+
         #endregion
 
         #region Métodos Auxiliares
@@ -234,6 +246,6 @@ namespace CalculadoraCSharp
             }
         }
 
-        #endregion       
+        #endregion
     }
 }

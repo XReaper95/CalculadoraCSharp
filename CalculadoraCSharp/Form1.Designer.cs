@@ -330,6 +330,7 @@
             this.botonPuntoDecimal.TabIndex = 13;
             this.botonPuntoDecimal.Text = ".";
             this.botonPuntoDecimal.UseVisualStyleBackColor = false;
+            this.botonPuntoDecimal.Click += new System.EventHandler(this.BotonPuntoDecimal_Click);
             // 
             // displaySecundario
             // 
