@@ -86,7 +86,6 @@ namespace CalculadoraCSharp
             else if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             MuestraResultado(resultado);
-            limpiaDisplay = true;
         }
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
@@ -149,6 +148,7 @@ namespace CalculadoraCSharp
             Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
             operando1 = null;
             operando2 = null;
+            limpiaDisplay = true;
         }
 
         /// <summary>
