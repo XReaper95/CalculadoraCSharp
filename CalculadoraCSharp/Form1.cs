@@ -20,7 +20,7 @@ namespace CalculadoraCSharp
         #region Variables
 
         //proxima digitacion limpia el display principal
-        private bool esperandoOperando2;
+        private bool limpiaDisplay;
         //estado de error
         private bool estadoError;
         //última operación selecionada
@@ -42,10 +42,10 @@ namespace CalculadoraCSharp
             {
                 if(Error()) return;
                 //si usuario entró operacion, prepara segundo operando
-                if (esperandoOperando2)
+                if (limpiaDisplay)
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
-                    esperandoOperando2 = false;
+                    limpiaDisplay = false;
                 }
                 Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
                 //evita ceros a la izquierda
@@ -73,9 +73,9 @@ namespace CalculadoraCSharp
             if (sender is Button operacion)
             {
                 if(operando1 == null) operando1 = DisplayANumero(displayPrincipal);
-                else if (!esperandoOperando2) operando2 = DisplayANumero(displayPrincipal);
+                else if (!limpiaDisplay) operando2 = DisplayANumero(displayPrincipal);
                 CambiaOperacion(operacion);
-                esperandoOperando2 = true;
+                limpiaDisplay = true;
             }
         } 
 
@@ -88,7 +88,7 @@ namespace CalculadoraCSharp
             MuestraResultado(resultado);
             operando1 = null;
             operando2 = null;
-            esperandoOperando2 = false;
+            limpiaDisplay = true;
         }
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
@@ -101,11 +101,11 @@ namespace CalculadoraCSharp
         private void BotonPuntoDecimal_Click(object sender, EventArgs e)
         {
             if(displayPrincipal.Text.Contains(",")) return;
-            if (esperandoOperando2 || operando1 == null && operando2 == null)
+            if (limpiaDisplay || operando1 == null && operando2 == null)
             {
                 Calculadora.BorraDisplay(displayPrincipal);
                 Calculadora.EscribeDisplay(displayPrincipal, "0");
-                esperandoOperando2 = false;
+                limpiaDisplay = false;
             }
             Calculadora.EscribeDisplay(displayPrincipal, ",");
         }
@@ -119,7 +119,7 @@ namespace CalculadoraCSharp
         /// </summary>
         private void EstadoInicial()
         {
-            esperandoOperando2 = false;
+            limpiaDisplay = false;
             estadoError = false;
             operacionActual = null;
             ultimoDisplaySecundario = "";

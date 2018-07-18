@@ -21,7 +21,7 @@ namespace CalculadoraCSharp
         internal static void EscribeDisplay(TextBox display, string texto)
         {
             display.Text += texto;
-        } //ok
+        }
         /// <summary>
         /// Muestra resultado en el display, formata si exite error
         /// </summary>
@@ -33,7 +33,7 @@ namespace CalculadoraCSharp
             CambiaFuente(display, FUENTE_NUMEROS);
             if (estadoError) CambiaFuente(display, FUENTE_LETRAS);
             display.Text += texto;
-        } //ok
+        }
 
         /// <summary>
         /// Borra la salida actual del display
@@ -42,7 +42,7 @@ namespace CalculadoraCSharp
         internal static void BorraDisplay(TextBox display)
         {
             display.Text = "";
-        } //ok
+        }
 
         /// <summary>
         /// Muestra error cuando el display sobrepasar los 11 digiros
@@ -55,7 +55,7 @@ namespace CalculadoraCSharp
                 MessageBox.Show("Máximo de 11 dígitos alcanzados", "Error");
                 return;
             }
-        } // ok
+        } 
 
         /// <summary>
         /// Realiza la operacion sobre los operandos
@@ -79,7 +79,7 @@ namespace CalculadoraCSharp
                 default:
                     return null;
             }
-        } //ok
+        }
 
         /// <summary>
         /// Cambia el signo del número diferente de cero
