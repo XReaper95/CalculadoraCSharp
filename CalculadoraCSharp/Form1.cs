@@ -30,6 +30,7 @@ namespace CalculadoraCSharp
         //números
         private float? resultado;
         private float? operando1;
+        private float? ultimoOperando2;
         private float? operando2;  
 
         #endregion
@@ -73,7 +74,7 @@ namespace CalculadoraCSharp
             if (sender is Button operacion)
             {
                 if(operando1 == null) operando1 = DisplayANumero(displayPrincipal);
-                else if (!limpiaDisplay) operando2 = DisplayANumero(displayPrincipal);
+               // else if (!limpiaDisplay) operando2 = DisplayANumero(displayPrincipal);
                 CambiaOperacion(operacion);
                 limpiaDisplay = true;
             }
@@ -82,8 +83,9 @@ namespace CalculadoraCSharp
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
             if(Error()) return;
-            if (operando1 == null) return;
-            else if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
+            if (operando1 == null && operando2 == null && !limpiaDisplay) return;
+            else if (operando2 == null)operando2 = DisplayANumero(displayPrincipal);
+            if(operando1 == null && limpiaDisplay) RepiteUltimaOperacion();
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             MuestraResultado(resultado);
         }
@@ -122,6 +124,7 @@ namespace CalculadoraCSharp
             ultimoDisplaySecundario = "";
             operando1 = null;
             operando2 = null;
+            ultimoOperando2 = 0;
             resultado = 0;
             HabilitaComandos();
             Calculadora.BorraDisplay(displayPrincipal);
@@ -147,6 +150,7 @@ namespace CalculadoraCSharp
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
             operando1 = null;
+            ultimoOperando2 = operando2;
             operando2 = null;
             limpiaDisplay = true;
         }
@@ -244,6 +248,12 @@ namespace CalculadoraCSharp
                 Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
                 operacionActual = Seleccion(operacion);
             }
+        }
+
+        private void RepiteUltimaOperacion()
+        {
+            operando1 = DisplayANumero(displayPrincipal);
+            operando2 = ultimoOperando2;
         }
 
         #endregion
