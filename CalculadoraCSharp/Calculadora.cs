@@ -64,7 +64,7 @@ namespace CalculadoraCSharp
         /// <param name="operando1"></param>
         /// <param name="operando2"></param>
         /// <returns>Resultado de la operacion</returns>
-        internal static int? Calcula(string operacion, int? operando1, int? operando2)
+        internal static float? Calcula(string operacion, float? operando1, float? operando2)
         {
             switch (operacion)
             {
@@ -86,7 +86,7 @@ namespace CalculadoraCSharp
         /// </summary>
         /// <param name="numero"></param>
         /// <returns></returns>
-        internal static string CambiaSigno(int? numero)
+        internal static string CambiaSigno(float? numero)
         {
             if (numero != 0)
             {
@@ -106,7 +106,7 @@ namespace CalculadoraCSharp
         /// <param name="sumando1"></param>
         /// <param name="sumando2"></param>
         /// <returns></returns>
-        private static int? Suma(int? sumando1, int? sumando2)
+        private static float? Suma(float? sumando1, float? sumando2)
         {
             return sumando1 + sumando2;
         } // ok
@@ -117,7 +117,7 @@ namespace CalculadoraCSharp
         /// <param name="minuendo"></param>
         /// <param name="sustraendo"></param>
         /// <returns></returns>
-        private static int? Resta(int? minuendo, int? sustraendo)
+        private static float? Resta(float? minuendo, float? sustraendo)
         {
             return minuendo - sustraendo;
         } // ok
@@ -128,7 +128,7 @@ namespace CalculadoraCSharp
         /// <param name="multiplicando"></param>
         /// <param name="multiplicador"></param>
         /// <returns></returns>
-        private static int? Multiplica(int? multiplicando, int? multiplicador)
+        private static float? Multiplica(float? multiplicando, float? multiplicador)
         {
             return multiplicando * multiplicador;
         } //ok
@@ -139,7 +139,7 @@ namespace CalculadoraCSharp
         /// <param name="dividendo"></param>
         /// <param name="divisor"></param>
         /// <returns></returns>
-        private static int? Divide(int? dividendo, int? divisor)
+        private static float? Divide(float? dividendo, float? divisor)
         {
             if (divisor == 0) return null;
             return dividendo / divisor;

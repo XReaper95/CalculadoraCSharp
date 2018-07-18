@@ -28,9 +28,9 @@ namespace CalculadoraCSharp
         //ultimo estado display secundario
         private string ultimoDisplaySecundario;
         //números
-        private int? resultado;
-        private int? operando1;
-        private int? operando2;  
+        private float? resultado;
+        private float? operando1;
+        private float? operando2;  
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace CalculadoraCSharp
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
-            int? numeroEnDisplay_temp = DisplayANumero(displayPrincipal);
+            float? numeroEnDisplay_temp = DisplayANumero(displayPrincipal);
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(numeroEnDisplay_temp));
         }
@@ -123,7 +123,7 @@ namespace CalculadoraCSharp
         /// <summary>
             /// Muestra el resultado de la operacion en el display principal
             /// </summary>
-        private void MuestraResultado(int? resultado)
+        private void MuestraResultado(float? resultado)
         {
             //muestra error
             if(resultado == null)
@@ -144,9 +144,9 @@ namespace CalculadoraCSharp
         /// </summary>
         /// <param name="display">Display con numeros a transformar</param>
         /// <returns></returns>
-        private int? DisplayANumero(TextBox display)
+        private float? DisplayANumero(TextBox display)
         {
-            return int.Parse(display.Text);
+            return float.Parse(display.Text);
         }
 
         /// <summary>
