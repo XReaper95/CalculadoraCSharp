@@ -13,30 +13,24 @@ namespace CalculadoraCSharp
         {
             InitializeComponent();
             EstadoInicial();
-        } 
+        }
 
         #endregion
 
         #region Variables
 
         //proxima digitacion limpia el display principal
-        private bool esperandoOperando2 = false;
-        //boton igual repite la ultima operacion con el ultimo operando
-        private bool repiteUltimaOperacion = false;
+        private bool esperandoOperando2;
         //estado de error
-        private bool estadoError = false;
+        private bool estadoError;
         //última operación selecionada
-        private string operacionActual = null;
+        private string operacionActual;
         //ultimo estado display secundario
-        private string ultimoDisplaySecundario = "";
+        private string ultimoDisplaySecundario;
         //números
-        private int? resultado = 0;
-        private int? operando1 = 0;
-        private int? operando2 = null;
-        //operando de la ultima operacion
-        private int? ultimoOperando = 0;
-        //numero actual en display(para cambio de signo)
-        private int? numeroEnDisplay = 0;
+        private int? resultado;
+        private int? operando1;
+        private int? operando2;  
 
         #endregion
 
@@ -78,11 +72,8 @@ namespace CalculadoraCSharp
         {
             if (sender is Button operacion)
             {
-                if(!esperandoOperando2 && operando2 != null)
-                {
-
-                }
-                operando1 = TextoANumero(displayPrincipal);
+                if(operando1 == null) operando1 = DisplayANumero(displayPrincipal);
+                else operando2 = DisplayANumero(displayPrincipal);
                 CambiaOperacion(operacion);
                 esperandoOperando2 = true;
             }
@@ -91,19 +82,20 @@ namespace CalculadoraCSharp
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
             if(Error()) return;
-            if (operacionActual == null) return;
-            Calculadora.BorraDisplay(displaySecundario);
-            operando2 = TextoANumero(displayPrincipal);
+            if (operando1 == null) return;
+            else if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             MuestraResultado(resultado);
+            operando1 = null;
+            operando2 = null;
             esperandoOperando2 = false;
         }
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
-            numeroEnDisplay = TextoANumero(displayPrincipal);
+            int? numeroEnDisplay_temp = DisplayANumero(displayPrincipal);
             Calculadora.BorraDisplay(displayPrincipal);
-            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(numeroEnDisplay));
+            Calculadora.EscribeDisplay(displayPrincipal, Calculadora.CambiaSigno(numeroEnDisplay_temp));
         }
 
         #endregion
@@ -116,15 +108,12 @@ namespace CalculadoraCSharp
         private void EstadoInicial()
         {
             esperandoOperando2 = false;
-            repiteUltimaOperacion = false;
             estadoError = false;
             operacionActual = null;
             ultimoDisplaySecundario = "";
-            operando1 = 0;
+            operando1 = null;
             operando2 = null;
             resultado = 0;
-            ultimoOperando = 0;
-            numeroEnDisplay = 0;
             HabilitaComandos();
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.BorraDisplay(displaySecundario);
@@ -145,6 +134,7 @@ namespace CalculadoraCSharp
                 DeshabilitaComandos();
                 return;
             }
+            Calculadora.BorraDisplay(displaySecundario);
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, resultado.ToString());
         }
@@ -154,7 +144,7 @@ namespace CalculadoraCSharp
         /// </summary>
         /// <param name="display">Display con numeros a transformar</param>
         /// <returns></returns>
-        private int? TextoANumero(TextBox display)
+        private int? DisplayANumero(TextBox display)
         {
             return int.Parse(display.Text);
         }
@@ -210,7 +200,7 @@ namespace CalculadoraCSharp
                 return true;
             }
             return false;
-        }
+        } 
 
         /// <summary>
         /// Obtiene la operacion del boton clicado
