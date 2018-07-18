@@ -73,7 +73,7 @@ namespace CalculadoraCSharp
             if (sender is Button operacion)
             {
                 if(operando1 == null) operando1 = DisplayANumero(displayPrincipal);
-                else operando2 = DisplayANumero(displayPrincipal);
+                else if (!esperandoOperando2) operando2 = DisplayANumero(displayPrincipal);
                 CambiaOperacion(operacion);
                 esperandoOperando2 = true;
             }
