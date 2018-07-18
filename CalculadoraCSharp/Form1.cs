@@ -100,8 +100,8 @@ namespace CalculadoraCSharp
 
         private void BotonPuntoDecimal_Click(object sender, EventArgs e)
         {
-            if(displayPrincipal.Text.Contains(",")) return;
-            if (limpiaDisplay || operando1 == null && operando2 == null)
+            if(displayPrincipal.Text.Contains(",") && !limpiaDisplay) return;
+            if (limpiaDisplay)
             {
                 Calculadora.BorraDisplay(displayPrincipal);
                 Calculadora.EscribeDisplay(displayPrincipal, "0");
