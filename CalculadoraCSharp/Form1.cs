@@ -41,18 +41,25 @@ namespace CalculadoraCSharp
         {
             if (sender is Button digito)
             {
-                if(Error()) return;
-                //si usuario entró operacion, prepara segundo operando
-                if (limpiaDisplay)
+                if (!Error())
+                {
+                    //si usuario entró operacion, prepara segundo operando
+                    if (limpiaDisplay)
+                    {
+                        Calculadora.BorraDisplay(displayPrincipal);
+                        limpiaDisplay = false;
+                    }
+                    Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
+                    //evita ceros a la izquierda
+                    if (displayPrincipal.Text == "0") Calculadora.BorraDisplay(displayPrincipal);
+                    //muestra digitación
+                    Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
+                }
+                else
                 {
                     Calculadora.BorraDisplay(displayPrincipal);
-                    limpiaDisplay = false;
+                    Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
                 }
-                Calculadora.CheckeaMaximoDeDigitos(displayPrincipal);
-                //evita ceros a la izquierda
-                if (displayPrincipal.Text == "0") Calculadora.BorraDisplay(displayPrincipal);
-                //muestra digitación
-                Calculadora.EscribeDisplay(displayPrincipal, digito.Text);
             }
         }
         
