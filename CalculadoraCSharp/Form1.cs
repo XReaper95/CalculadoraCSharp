@@ -96,10 +96,11 @@ namespace CalculadoraCSharp
                     MuestraResultado(resultado);
                     ultimoDisplaySecundario = displaySecundario.Text.Substring(0, displaySecundario.Text.Length - 1);
                     operando1 = resultado;
+                    operando2 = null;
                     limpiaDisplay = true;
                     return;
                 }
-                else if (operacionActual != null)
+                else
                 {
                     Calculadora.BorraDisplay(displaySecundario);
                     Calculadora.EscribeDisplay(displaySecundario, ultimoDisplaySecundario + operacion.Text);
@@ -113,17 +114,16 @@ namespace CalculadoraCSharp
         {
             if(Error()) return;
             if (operando1 == null && operando2 == null && !limpiaDisplay) return;
-            else if (operando2 == null)operando2 = DisplayANumero(displayPrincipal);
+            else if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
             if(operando1 == null && limpiaDisplay) RepiteUltimaOperacion();
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             Calculadora.BorraDisplay(displaySecundario);
             MuestraResultado(resultado);
-            operacionActual = null;
             operando1 = null;
             ultimoOperando2 = operando2;
             operando2 = null;
             limpiaDisplay = true;
-        }//TODO arreglar
+        }//TODO refactorizar
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
