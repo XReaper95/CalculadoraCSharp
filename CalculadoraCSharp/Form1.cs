@@ -66,7 +66,6 @@ namespace CalculadoraCSharp
         private void BotonClearEntry_Click(object sender, EventArgs e)
         {
             if(Error()) return;
-            //limpia display principal
             Calculadora.BorraDisplay(displayPrincipal);
             Calculadora.EscribeDisplay(displayPrincipal, "0");
         }
@@ -226,16 +225,6 @@ namespace CalculadoraCSharp
         } 
 
         /// <summary>
-        /// Obtiene la operacion del boton clicado
-        /// </summary>
-        /// <param name="operacion"></param>
-        /// <returns></returns>
-        private string Seleccion(Button operacion)
-        {
-            return operacion.Tag.ToString();
-        }
-
-        /// <summary>
         /// Cambia de operacion, y actualiza display secundario
         /// </summary>
         /// <param name="operacion"></param>
@@ -246,14 +235,14 @@ namespace CalculadoraCSharp
                 Calculadora.BorraDisplay(displaySecundario);
                 displaySecundario.Text = ultimoDisplaySecundario;
                 Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
-                operacionActual = Seleccion(operacion);
+                operacionActual = operacion.Tag.ToString();
                 return;
             }
             else
             {
                 ultimoDisplaySecundario = displaySecundario.Text;
                 Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
-                operacionActual = Seleccion(operacion);
+                operacionActual = operacion.Tag.ToString();
             }
         }
 
