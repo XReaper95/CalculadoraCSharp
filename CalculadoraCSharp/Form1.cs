@@ -113,15 +113,14 @@ namespace CalculadoraCSharp
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
             if(Error()) return;
-            if (operando1 == null && operando2 == null && !limpiaDisplay) return;
-            else if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
-            if(operando1 == null && limpiaDisplay) RepiteUltimaOperacion();
+            if (operando1 == null && !limpiaDisplay) return;
+            if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
+            else if(limpiaDisplay) RepiteUltimaOperacion();
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             Calculadora.BorraDisplay(displaySecundario);
             MuestraResultado(resultado);
             operando1 = null;
             ultimoOperando2 = operando2;
-            operando2 = null;
             limpiaDisplay = true;
         }//TODO refactorizar
 
