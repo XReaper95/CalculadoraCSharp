@@ -88,7 +88,7 @@ namespace CalculadoraCSharp
                     ultimoDisplaySecundario = displaySecundario.Text.Substring(0, displaySecundario.Text.Length - 1);
                     limpiaDisplay = true;
                 }
-                else if (operando2 == null)
+                else if (operando2 == null && !limpiaDisplay)
                 {
                     
                     operando2 = DisplayANumero(displayPrincipal);
