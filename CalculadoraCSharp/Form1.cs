@@ -84,7 +84,7 @@ namespace CalculadoraCSharp
                 CambiaOperacion(operacion);
                 limpiaDisplay = true;
             }
-        } 
+        } //TODO hacer q boton operacion calcule resultado si ya tiene operandos
 
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
@@ -94,7 +94,7 @@ namespace CalculadoraCSharp
             if(operando1 == null && limpiaDisplay) RepiteUltimaOperacion();
             resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
             MuestraResultado(resultado);
-        }
+        }//TODO refactorizar
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
@@ -244,8 +244,11 @@ namespace CalculadoraCSharp
                 Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
                 operacionActual = operacion.Tag.ToString();
             }
-        }
-
+        }//TODO refactorizar
+        
+        /// <summary>
+        /// Prepara los operandos para repetir la ultima operación, si se toca el botón igual.
+        /// </summary>
         private void RepiteUltimaOperacion()
         {
             operando1 = DisplayANumero(displayPrincipal);
