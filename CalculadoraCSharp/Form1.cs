@@ -82,35 +82,27 @@ namespace CalculadoraCSharp
                 if (operando1 == null)
                 {
                     operando1 = DisplayANumero(displayPrincipal);
-                    ultimoDisplaySecundario = displaySecundario.Text;
-                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
-                    operacionActual = operacion.Tag.ToString();
-                    ultimoDisplaySecundario = displaySecundario.Text.Substring(0, displaySecundario.Text.Length - 1);
+                    ActualizaOperacion(operacion);
                     limpiaDisplay = true;
                 }
                 else if (operando2 == null && !limpiaDisplay)
-                {
-                    
+                {                   
                     operando2 = DisplayANumero(displayPrincipal);
-                    resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
-                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
-                    operacionActual = operacion.Tag.ToString();
-                    MuestraResultado(resultado);
+                    Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);                    
+                    MuestraResultado();
+
                     ultimoDisplaySecundario = displaySecundario.Text.Substring(0, displaySecundario.Text.Length - 1);
+                    operacionActual = operacion.Tag.ToString();
                     operando1 = resultado;
                     operando2 = null;
                     limpiaDisplay = true;
-                    return;
                 }
                 else
                 {
-                    Calculadora.BorraDisplay(displaySecundario);
-                    Calculadora.EscribeDisplay(displaySecundario, ultimoDisplaySecundario + operacion.Text);
-                    operacionActual = operacion.Tag.ToString();
-                    return;
+                    CorrigeOperacion(operacion);
                 }
             }
-        } //TODO refactorizar
+        }
 
         private void BotonResultadoOperacion_Click(object sender, EventArgs e)
         {
@@ -118,14 +110,15 @@ namespace CalculadoraCSharp
             if (operando1 == null && !limpiaDisplay) return;
             if (operando2 == null) operando2 = DisplayANumero(displayPrincipal);
             if (operando1 == null) RepiteUltimaOperacion();
-            resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
+                        
+            MuestraResultado();
             Calculadora.BorraDisplay(displaySecundario);
-            MuestraResultado(resultado);
+
             operando1 = null;
             ultimoOperando2 = operando2;
             operando2 = null;           
             limpiaDisplay = true;
-        }//TODO refactorizar
+        }
 
         private void BotonMasMenos_Click(object sender, EventArgs e)
         {
@@ -172,10 +165,12 @@ namespace CalculadoraCSharp
         /// <summary>
             /// Muestra el resultado de la operacion en el display principal
             /// </summary>
-        private void MuestraResultado(float? resultado)
+        private void MuestraResultado()
         {
             //muestra error
-            if(resultado == null)
+            resultado = Calculadora.Calcula(operacionActual, operando1, operando2);
+
+            if (resultado == null)
             {
                 estadoError = true;
                 Calculadora.BorraDisplay(displayPrincipal);
@@ -257,6 +252,28 @@ namespace CalculadoraCSharp
         {
             operando1 = DisplayANumero(displayPrincipal);
             operando2 = ultimoOperando2;
+        }
+
+        /// <summary>
+        /// Actualiza la operación actual y lo refleja en el display secundario
+        /// </summary>
+        /// <param name="operacion"></param>
+        private void ActualizaOperacion(Button operacion)
+        {
+            Calculadora.EscribeDisplay(displaySecundario, " " + displayPrincipal.Text + " " + operacion.Text);
+            operacionActual = operacion.Tag.ToString();
+            ultimoDisplaySecundario = displaySecundario.Text.Substring(0, displaySecundario.Text.Length - 1);
+        }
+
+        /// <summary>
+        /// Corrige la operacion actual si el usuario presiona botones de operacion diferentes seguido
+        /// </summary>
+        /// <param name="operacion"></param>
+        private void CorrigeOperacion(Button operacion)
+        {
+            Calculadora.BorraDisplay(displaySecundario);
+            Calculadora.EscribeDisplay(displaySecundario, ultimoDisplaySecundario + operacion.Text);
+            operacionActual = operacion.Tag.ToString();
         }
 
         #endregion
